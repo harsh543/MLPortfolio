@@ -10,7 +10,7 @@ export default function ContactSection() {
     name: "Harsh P. Bajaj",
     title: "Senior ML Engineer | AI Infrastructure & Production ML Systems",
     location: "Redmond, WA",
-    email: "harsh@harshbajaj.dev",
+    email: "harshpbajaj@yahoo.co.in",
     phone: "(206) 825-0909",
     linkedin: "https://linkedin.com/in/harshbajaj543",
     github: "https://github.com/harsh543"
