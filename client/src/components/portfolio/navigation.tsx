@@ -37,31 +37,31 @@ export default function Navigation() {
          <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
+              className="text-slate-700 hover:text-indigo-600 transition-colors duration-300 font-medium relative group"
             >
               Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 transition-all duration-200 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
+              className="text-slate-700 hover:text-indigo-600 transition-colors duration-300 font-medium relative group"
             >
               About
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 transition-all duration-200 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
+              className="text-slate-700 hover:text-indigo-600 transition-colors duration-300 font-medium relative group"
             >
               Projects
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 transition-all duration-200 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
+              className="text-slate-700 hover:text-indigo-600 transition-colors duration-300 font-medium relative group"
             >
               Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 transition-all duration-200 group-hover:w-full"></span>
             </button>
           </div>
 
