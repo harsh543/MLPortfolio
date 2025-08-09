@@ -21,7 +21,7 @@ export default function AboutSection() {
         <div className={`text-center mb-16 animate-on-scroll ${isVisible ? "animate" : ""}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-6">About Me</h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Senior ML Engineer with expertise in building production-scale AI systems. Located in Redmond, WA,
+            Senior Software Engineer with deep expertise in distributed systems and GPU infrastructure at enterprise scale. Located in Redmond, WA,
             I specialize in transforming machine learning research into enterprise-grade solutions that deliver
             measurable business impact.
           </p>
