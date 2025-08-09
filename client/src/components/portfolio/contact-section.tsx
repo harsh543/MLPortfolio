@@ -45,8 +45,8 @@ export default function ContactSection() {
 
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary-blue bg-opacity-10 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary-blue" />
+                  <div className="w-12 h-12 bg-primary-blue rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-text-primary">Location</h4>
@@ -55,8 +55,8 @@ export default function ContactSection() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary-blue bg-opacity-10 rounded-full flex items-center justify-center">
-                    <span className="text-primary-blue font-bold text-xl">@</span>
+                  <div className="w-12 h-12 bg-primary-blue rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-xl">@</span>
                   </div>
                   <div>
                     <h4 className="font-semibold text-text-primary">Email</h4>
@@ -68,7 +68,6 @@ export default function ContactSection() {
                     </a>
                   </div>
                 </div>
-              </div>
 
               <div className="pt-6">
                 <h4 className="font-semibold text-text-primary mb-4">Connect With Me</h4>
