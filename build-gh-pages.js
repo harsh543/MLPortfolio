@@ -21,6 +21,21 @@ html = html.replace(/src="\/(?!MLPortfolio|https?:\/\/)/g, 'src="/MLPortfolio/')
 
 fs.writeFileSync(indexPath, html);
 
+// Also fix asset paths in the JavaScript bundle
+const assetsDir = path.join(process.cwd(), 'dist/public/assets');
+const jsFiles = fs.readdirSync(assetsDir).filter(file => file.endsWith('.js'));
+
+jsFiles.forEach(jsFile => {
+  const jsPath = path.join(assetsDir, jsFile);
+  let jsContent = fs.readFileSync(jsPath, 'utf8');
+  
+  // Replace asset paths in JavaScript (for image imports)
+  jsContent = jsContent.replace(/\/assets\//g, '/MLPortfolio/assets/');
+  
+  fs.writeFileSync(jsPath, jsContent);
+  console.log(`Fixed asset paths in ${jsFile}`);
+});
+
 // Create 404.html for GitHub Pages SPA routing
 const notFoundPath = path.join(process.cwd(), 'dist/public/404.html');
 fs.writeFileSync(notFoundPath, html);
