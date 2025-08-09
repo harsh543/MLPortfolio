@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, ExternalLink } from "lucide-react";
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,8 +13,16 @@ export default function ContactSection() {
     email: "harshpbajaj@yahoo.co.in",
     phone: "(206) 825-0909",
     linkedin: "https://linkedin.com/in/harshbajaj543",
-    github: "https://github.com/harsh543"
+    github: "https://github.com/harsh543",
+    devpost: "https://devpost.com/harshrocks"
   };
+
+  // Custom Devpost Icon Component
+  const DevpostIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M6.002 1.61L0 12.004L6.002 22.39h11.996L24 12.004L17.998 1.61H6.002zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31 0 4.436-3.21 6.302-6.456 6.302H7.595V5.694zm2.517 2.449v7.714h1.241c2.646 0 3.862-1.55 3.862-3.861.009-2.569-1.096-3.853-3.767-3.853H10.112z"/>
+    </svg>
+  );
 
   return (
     <section id="contact" ref={sectionRef} className="py-20 bg-white">
@@ -84,7 +92,8 @@ export default function ContactSection() {
                     href={contactInfo.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+                    className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors group"
+                    title="LinkedIn Profile"
                   >
                     <Linkedin className="w-6 h-6" />
                   </a>
@@ -92,11 +101,24 @@ export default function ContactSection() {
                     href={contactInfo.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+                    className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors group"
+                    title="GitHub Profile"
                   >
                     <Github className="w-6 h-6" />
                   </a>
+                  <a
+                    href={contactInfo.devpost}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-110 group"
+                    title="Devpost Portfolio"
+                  >
+                    <DevpostIcon />
+                  </a>
                 </div>
+                <p className="text-sm text-text-secondary mt-3">
+                  Check out my hackathon projects and innovative solutions on Devpost
+                </p>
               </div>
             </div>
           </div>
