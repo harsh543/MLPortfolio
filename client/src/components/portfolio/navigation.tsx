@@ -22,7 +22,9 @@ export default function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        isScrolled ? "navbar-blur shadow-lg" : ""
+        isScrolled 
+          ? "bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 backdrop-blur-lg shadow-lg" 
+          : "bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
