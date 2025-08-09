@@ -28,7 +28,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className={`space-y-6 animate-on-scroll ${isVisible ? "animate" : ""}`}>
             <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight">
-              Senior ML Engineer
+              Software Engineer 2 | ML Engineer
               <span className="block text-accent-yellow">& AI Architect</span>
             </h1>
             <h2 className="text-xl lg:text-2xl font-light text-gray-100 max-w-2xl">
