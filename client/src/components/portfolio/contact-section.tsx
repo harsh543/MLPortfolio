@@ -11,7 +11,7 @@ export default function ContactSection() {
     title: "Software Engineer II at Microsoft | Specializing in AI Infrastructure & Production ML Systems",
     location: "Redmond, WA",
     email: "harshpbajaj@yahoo.co.in",
-    phone: "(206) 00000-000000",
+    phone: "(206) 825-0909",
     linkedin: "https://linkedin.com/in/harshbajaj543",
     github: "https://github.com/harsh543",
     devpost: "https://devpost.com/harshrocks"
@@ -68,6 +68,7 @@ export default function ContactSection() {
                     </a>
                   </div>
                 </div>
+              </div>
 
               <div className="pt-6">
                 <h4 className="font-semibold text-text-primary mb-4">Connect With Me</h4>
