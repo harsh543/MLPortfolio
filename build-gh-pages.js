@@ -11,12 +11,13 @@ const indexPath = path.join(process.cwd(), 'dist/public/index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
 
 // Replace asset paths to include the repository name
-html = html.replace(/\/assets\//g, '/MLPortfolio/assets/');
-html = html.replace(/href="\//g, 'href="/MLPortfolio/');
-html = html.replace(/src="\//g, 'src="/MLPortfolio/');
+// Only replace paths that start with / and are not already prefixed
+html = html.replace(/src="\/assets\//g, 'src="/MLPortfolio/assets/');
+html = html.replace(/href="\/assets\//g, 'href="/MLPortfolio/assets/');
 
-// Don't double-replace already corrected paths
-html = html.replace(/\/MLPortfolio\/MLPortfolio\//g, '/MLPortfolio/');
+// Fix other root paths that aren't external URLs or already fixed
+html = html.replace(/href="\/(?!MLPortfolio|https?:\/\/)/g, 'href="/MLPortfolio/');
+html = html.replace(/src="\/(?!MLPortfolio|https?:\/\/)/g, 'src="/MLPortfolio/');
 
 fs.writeFileSync(indexPath, html);
 
