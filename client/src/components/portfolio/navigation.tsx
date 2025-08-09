@@ -34,30 +34,34 @@ export default function Navigation() {
             <span className="text-accent-yellow">Bajaj</span>
           </div>
 
-          <div className="hidden md:flex space-x-8">
+         <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="nav-link hover:text-primary-blue transition-colors duration-300"
+              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
             >
               Home
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="nav-link hover:text-primary-blue transition-colors duration-300"
+              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
             >
               About
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="nav-link hover:text-primary-blue transition-colors duration-300"
+              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
             >
               Projects
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="nav-link hover:text-primary-blue transition-colors duration-300"
+              className="text-white hover:text-yellow-300 transition-colors duration-300 font-medium relative group"
             >
               Contact
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-200 group-hover:w-full"></span>
             </button>
           </div>
 
