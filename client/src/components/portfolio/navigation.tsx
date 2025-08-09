@@ -28,7 +28,8 @@ export default function Navigation() {
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold text-text-primary">
-            <span className="text-primary-blue">Harsh</span>Bajaj
+            <span className="text-white">Harsh</span>
+            <span className="text-accent-yellow">Bajaj</span>
           </div>
 
           <div className="hidden md:flex space-x-8">
