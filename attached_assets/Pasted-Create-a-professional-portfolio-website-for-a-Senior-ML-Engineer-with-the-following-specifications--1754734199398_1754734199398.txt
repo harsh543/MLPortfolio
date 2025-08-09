@@ -1,0 +1,161 @@
+Create a professional portfolio website for a Senior ML Engineer with the following specifications:
+PERSON DETAILS:
+
+Name: Harsh P. Bajaj
+Title: Senior ML Engineer | AI Infrastructure & Production ML Systems
+Location: Redmond, WA
+Email: harsh@harshbajaj.dev
+Phone: (206) 825-0909
+LinkedIn: https://linkedin.com/in/harshbajaj543
+GitHub: https://github.com/harsh543
+
+HERO SECTION STATS:
+
+10M+ Daily Events Processed
+99.99% System Availability
+60% Productivity Improvement
+
+KEY EXPERTISE:
+
+Databricks Agent Framework (MCP)
+Production ML Infrastructure
+RAG Systems & Vector Search
+Real-time ML Inference
+MLflow Evaluation & Monitoring
+
+FEATURED PROJECTS:
+
+Production ML Infrastructure at Microsoft
+
+Description: Architected ML pipelines processing 10M+ daily events with 99.99% availability. Built predictive maintenance models for GPU failure detection with 13-day advance warning capability.
+Technologies: Databricks, Apache Spark, Azure Synapse, MLflow
+
+
+AI Agent Systems with Databricks
+
+Description: Built production-grade agent systems using Databricks Agent Framework and Meta Llama 3.3 70B. Implemented automated workflows for investment decision-making and customer service.
+Technologies: Databricks Agent Framework, Meta Llama 3.3 70B, Vector Search, MLflow
+GitHub: https://github.com/harsh543/tmm_dataengineering/tree/main/agents-workshop
+
+
+RAG-Based Recommendation Systems
+
+Description: Developed intelligent recommendation systems using LangChain and vector search. Achieved 60% improvement in discovery time with contextual justifications.
+Technologies: LangChain, LlamaIndex, Elasticsearch, Vector Search
+
+
+
+DESIGN REQUIREMENTS:
+Color Scheme:
+
+Primary gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+Accent color: #fbbf24 (golden yellow)
+Primary blue: #2563eb
+Text: #333333 for dark text, #6b7280 for secondary text
+Background: #ffffff main, #f8fafc for sections
+
+Layout Structure:
+
+Fixed navigation bar with smooth scrolling
+Hero section with gradient background and animated stats
+About section with expertise list
+Projects section with card grid layout
+Contact section with social links
+Footer with copyright
+
+Typography:
+
+Font family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
+Hero h1: 3.5rem, font-weight 800
+Hero h2: 1.5rem, font-weight 400
+Section headings: 2.5rem
+Body text: 1.2rem for hero description, 1rem for regular text
+
+Interactive Elements:
+
+Smooth scrolling navigation
+Animated statistics counter on scroll
+Hover effects on project cards (translateY(-8px))
+Button hover animations with transform
+Navbar background blur on scroll
+
+Responsive Design:
+
+Mobile-first approach
+Hero stats stack vertically on mobile
+Project grid becomes single column on mobile
+Navigation menu collapses on mobile (hide for now)
+Buttons become full-width on mobile
+
+File Structure:
+Create these files:
+
+index.html (main page)
+css/style.css (main styles)
+css/responsive.css (mobile styles)
+js/main.js (interactions)
+
+SPECIFIC FEATURES TO IMPLEMENT:
+
+Navigation: Fixed navbar with logo and menu items (About, Projects, Resume, Contact)
+Hero Section:
+
+Gradient background
+Large title and subtitle
+Three animated statistics
+Two call-to-action buttons
+
+
+About Section:
+
+Professional description
+Expertise areas as styled list
+Space for profile image (placeholder)
+
+
+Projects Section:
+
+Three project cards in grid layout
+Each card has title, description, tech tags, and action buttons
+Hover animations
+
+
+Contact Section:
+
+Contact details
+Social media links
+Professional styling
+
+
+JavaScript Interactions:
+
+Smooth scrolling for navigation
+Animated counter for statistics
+Navbar background change on scroll
+Intersection Observer for animations
+
+
+
+STYLING SPECIFICATIONS:
+
+Use CSS Grid for project layout
+Flexbox for navigation and buttons
+Box shadows: 0 4px 20px rgba(0,0,0,0.1) for cards
+Border radius: 12px for cards, 8px for buttons
+Transitions: 0.3s ease for hover effects
+Max container width: 1200px
+Section padding: 80px vertical
+
+CONTENT TONE:
+Professional but approachable, emphasizing production-scale experience, technical leadership, and business impact. Focus on enterprise-level capabilities and measurable results.
+META TAGS:
+Include SEO optimization with description: "Senior ML Engineer specializing in production AI systems, Databricks Agent Framework, and large-scale ML infrastructure"
+MAKE IT PRODUCTION-READY:
+
+Clean, professional code
+Optimized for performance
+Mobile responsive
+Accessible design
+Modern web standards
+
+Create a complete, professional portfolio that showcases expertise in machine learning engineering with a focus on production systems and enterprise-scale impact.
