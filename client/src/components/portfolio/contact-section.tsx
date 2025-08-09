@@ -11,7 +11,7 @@ export default function ContactSection() {
     title: "Software Engineer II at Microsoft | Specializing in AI Infrastructure & Production ML Systems",
     location: "Redmond, WA",
     email: "harshpbajaj@yahoo.co.in",
-    phone: "(206) 825-0909",
+    phone: "(206) 00000-000000",
     linkedin: "https://linkedin.com/in/harshbajaj543",
     github: "https://github.com/harsh543",
     devpost: "https://devpost.com/harshrocks"
@@ -48,20 +48,18 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-primary-blue bg-opacity-10 rounded-full flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-primary-blue" />
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div>
                     <h4 className="font-semibold text-text-primary">Location</h4>
-                    <MapPin className="w-4 h-4 text-primary-blue" />
                     <p className="text-text-secondary">{contactInfo.location}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-primary-blue bg-opacity-10 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary-blue" />
+                    <span className="text-primary-blue font-bold text-xl">@</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div>
                     <h4 className="font-semibold text-text-primary">Email</h4>
-                    <span className="text-primary-blue font-bold text-lg">@</span>
                     <a 
                       href={`mailto:${contactInfo.email}`} 
                       className="text-text-secondary hover:text-primary-blue transition-colors"
