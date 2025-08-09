@@ -19,4 +19,9 @@ html = html.replace(/src="\//g, 'src="/MLPortfolio/');
 html = html.replace(/\/MLPortfolio\/MLPortfolio\//g, '/MLPortfolio/');
 
 fs.writeFileSync(indexPath, html);
-console.log('Fixed asset paths for GitHub Pages deployment');
+
+// Create 404.html for GitHub Pages SPA routing
+const notFoundPath = path.join(process.cwd(), 'dist/public/404.html');
+fs.writeFileSync(notFoundPath, html);
+
+console.log('Fixed asset paths and created 404.html for GitHub Pages deployment');
