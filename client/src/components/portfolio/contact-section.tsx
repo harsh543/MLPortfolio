@@ -8,7 +8,7 @@ export default function ContactSection() {
 
   const contactInfo = {
     name: "Harsh P. Bajaj",
-    title: "Senior Software Engineer at Microsoft | Specializing in AI Infrastructure & Production ML Systems",
+    title: "Software Engineer II at Microsoft | Specializing in AI Infrastructure & Production ML Systems",
     location: "Redmond, WA",
     email: "harshpbajaj@yahoo.co.in",
     phone: "(206) 825-0909",
