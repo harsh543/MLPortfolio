@@ -27,7 +27,8 @@ export default function ProjectsSection() {
       description: "Developed intelligent recommendation systems using LangChain and vector search. Achieved 60% improvement in discovery time with contextual justifications.",
       technologies: ["LangChain", "LlamaIndex", "Elasticsearch", "Vector Search"],
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      alt: "RAG-Based Recommendation Systems"
+      alt: "RAG-Based Recommendation Systems",
+      github: "https://github.com/harsh543/hotel-review-rag-ai-search"
     }
   ];
 
