@@ -33,7 +33,7 @@ export default function AboutSection() {
             <p className="text-lg text-text-secondary mb-8 leading-relaxed">
               At Microsoft, I architect ML pipelines that process over 10 million events daily while maintaining
               99.99% system availability. My work spans from building predictive maintenance models for GPU failure
-              detection to developing AI agent systems using Azure AI Foundry, Copilot, Claude Sonnet 4, Databricks Agent Framework and Meta Llama 3.3 70B.
+              detection to developing AI agent systems using Databricks Agent Framework integrated with GPT-4 and Claude Sonnet.
             </p>
 
             <div className="space-y-4">
