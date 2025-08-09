@@ -21,21 +21,11 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        isScrolled 
-          ? "backdrop-blur-lg shadow-lg" 
-          : ""
-      }`}
-      style={{
-        backgroundImage: "linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%)",
-        backgroundPositionX: "initial",
-        backgroundPositionY: "initial",
-        backgroundSize: "initial",
-        backgroundRepeat: "initial",
-        backgroundAttachment: "initial",
-        backgroundOrigin: "initial",
-        backgroundClip: "initial"
-      }}
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+    isScrolled 
+      ? "bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 backdrop-blur-lg shadow-lg" 
+      : "bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500"
+  }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
