@@ -1,10 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { ExternalLink, Github, Play } from "lucide-react";
+import { ExternalLink, Github, Play, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.2 });
+  const [expandedProjects, setExpandedProjects] = useState({});
+
+  const toggleProjectExpansion = (projectIndex) => {
+    setExpandedProjects(prev => ({
+      ...prev,
+      [projectIndex]: !prev[projectIndex]
+    }));
+  };
 
   const projects = [
     {
@@ -32,6 +40,46 @@ export default function ProjectsSection() {
       demo: "https://www.youtube.com/watch?v=qOR3eW8ik1c"
     }
   ];
+
+  const renderTechnologies = (technologies, projectIndex) => {
+    const isExpanded = expandedProjects[projectIndex];
+    const visibleTechs = isExpanded ? technologies : technologies.slice(0, 4);
+    const hasMore = technologies.length > 4;
+
+    return (
+      <div className="flex flex-wrap gap-2 mb-6">
+        {visibleTechs.map((tech, techIndex) => (
+          <span 
+            key={techIndex} 
+            className={`tech-tag bg-gray-800 text-white px-3 py-1 text-sm rounded-full font-medium transition-all duration-300 ${
+              isExpanded && techIndex >= 4 ? 'animate-fadeIn' : ''
+            }`}
+          >
+            {tech}
+          </span>
+        ))}
+        
+        {hasMore && (
+          <button
+            onClick={() => toggleProjectExpansion(projectIndex)}
+            className="tech-tag bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 text-sm rounded-full font-medium transition-all duration-300 flex items-center gap-1 group"
+          >
+            {isExpanded ? (
+              <>
+                Show Less
+                <ChevronUp className="w-3 h-3 transition-transform group-hover:scale-110" />
+              </>
+            ) : (
+              <>
+                +{technologies.length - 4} more
+                <ChevronDown className="w-3 h-3 transition-transform group-hover:scale-110" />
+              </>
+            )}
+          </button>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 bg-bg-section">
@@ -72,18 +120,10 @@ export default function ProjectsSection() {
                 <p className="text-text-secondary mb-4 leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag bg-gray-800 text-white px-3 py-1 text-sm rounded-full font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <span className="tech-tag bg-gray-700 text-white px-3 py-1 text-sm rounded-full font-medium">
-                      +{project.technologies.length - 4} more
-                    </span>
-                  )}
-                </div>
+                
+                {/* Enhanced Technology Tags with Expand/Collapse */}
+                {renderTechnologies(project.technologies, index)}
+                
                 <div className="flex gap-3">
                   {project.demo ? (
                     <a
@@ -138,6 +178,23 @@ export default function ProjectsSection() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
     </section>
   );
 }
