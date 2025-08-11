@@ -23,11 +23,11 @@ export default function ProjectsSection() {
       alt: "Production ML Infrastructure"
     },
     {
-      title: "Intelligent Financial Forecasting Agent",
-      description: "Architected end-to-end agentic AI system using Azure AI Foundry and Databricks Agent Framework for comprehensive market analysis. Built multi-modal agent that orchestrates CANSLIM evaluation, technical analysis, and macroeconomic forecasting.",
-      technologies: ["Azure AI Foundry", "Databricks Agent Framework", "Azure OpenAI GPT-4", "Vector Search", "MLflow", "Financial APIs"],
+      title: "Investment Assistant with Databricks Mosaic AI",
+      description: "Built production-ready investment decision agent using Databricks Mosaic AI Agent Framework. Integrates real-time Yahoo Finance API, Delta Tables, and LLM reasoning to provide Buy/Sell/Hold recommendations with human-in-the-loop feedback through Review App.",
+      technologies: ["Databricks Mosaic AI", "Agent Framework", "Yahoo Finance API", "Delta Tables",  "MLflow", "Model Serving"],
       image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      alt: "Intelligent Financial Forecasting Agent",
+      alt: "Investment Assistant with Databricks Mosaic AI",
       github: "https://github.com/harsh543/databricks-agent-mosaic"
     },
     {
