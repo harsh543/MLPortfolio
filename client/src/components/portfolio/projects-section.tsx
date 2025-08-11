@@ -20,7 +20,7 @@ export default function ProjectsSection() {
       technologies: ["Azure AI Foundry", "Databricks Agent Framework", "Azure OpenAI GPT-4", "Vector Search", "MLflow", "Financial APIs"],
       image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
       alt: "Intelligent Financial Forecasting Agent",
-      github: "https://github.com/harsh543/tmm_dataengineering/tree/main/agents-workshop"
+      github: "https://github.com/harsh543/databricks-agent-mosaic"
     },
     {
       title: "AI-Powered Hotel Discovery Engine",
