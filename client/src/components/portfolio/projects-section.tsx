@@ -29,7 +29,7 @@ export default function ProjectsSection() {
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
       alt: "AI-Powered Hotel Discovery Engine",
       github: "https://github.com/harsh543/hotel-review-rag-ai-search",
-      demo: "https://www.youtube.com/watch?v=qOR3eW8ik1c"
+      demo: "https://lnkd.in/gtNE5xsy"
     }
   ];
 
@@ -74,12 +74,12 @@ export default function ProjectsSection() {
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag bg-gray-100 text-gray-800 px-3 py-1 text-sm rounded-full font-medium">
+                    <span key={techIndex} className="tech-tag bg-gray-800 text-white px-3 py-1 text-sm rounded-full font-medium">
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="tech-tag bg-gray-200 text-gray-700 px-3 py-1 text-sm rounded-full font-medium">
+                    <span className="tech-tag bg-gray-700 text-white px-3 py-1 text-sm rounded-full font-medium">
                       +{project.technologies.length - 4} more
                     </span>
                   )}
