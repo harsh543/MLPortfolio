@@ -29,7 +29,7 @@ export default function ProjectsSection() {
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
       alt: "AI-Powered Hotel Discovery Engine",
       github: "https://github.com/harsh543/hotel-review-rag-ai-search",
-      demo: "https://lnkd.in/gtNE5xsy"
+      demo: "https://www.youtube.com/watch?v=qOR3eW8ik1c"
     }
   ];
 
