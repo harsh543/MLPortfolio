@@ -75,36 +75,36 @@ export default function HeroSection() {
         </div>
 
         {/* Animated Statistics */}
-        <div className={`grid md:grid-cols-3 gap-8 mt-20 animate-on-scroll ${isVisible ? "animate" : ""}`}>
-          <div className="text-center">
-            <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
-              <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
-                {dailyEvents}M+
-              </div>
-              <div className="text-lg font-semibold">Million+ Daily Events</div>
-              <div className="text-sm text-gray-200">Processed</div>
+      <div className={`grid md:grid-cols-3 gap-8 mt-20 animate-on-scroll ${isVisible ? "animate" : ""}`}>
+        <div className="text-center">
+          <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
+            <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
+              {dailyEvents}PB+
             </div>
+            <div className="text-lg font-semibold">Petabytes of Data</div>
+            <div className="text-sm text-gray-200">Processed Daily</div>
           </div>
-          <div className="text-center">
-            <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
-              <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
-                {availability}%
-              </div>
-              <div className="text-lg font-semibold">System Availability</div>
-              <div className="text-sm text-gray-200">Uptime Percentage</div>
+        </div>
+        <div className="text-center">
+          <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
+            <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
+              {availability}%
             </div>
+            <div className="text-lg font-semibold">System Availability</div>
+            <div className="text-sm text-gray-200">Enterprise-Scale Reliability</div>
           </div>
-          <div className="text-center">
-            <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
-              <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
-                {productivity}%
-              </div>
-              <div className="text-lg font-semibold">Productivity Improvement</div>
-              <div className="text-sm text-gray-200">Performance Gain</div>
+        </div>
+        <div className="text-center">
+          <div className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
+            <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
+              {productivity}%
             </div>
+            <div className="text-lg font-semibold">Productivity Gains</div>
+            <div className="text-sm text-gray-200">From AI-Driven Automation</div>
           </div>
         </div>
       </div>
+
     </section>
   );
 }
