@@ -264,10 +264,10 @@ export default function ProjectsSection(): JSX.Element {
   };
 
   /**
-   * FEATURED: Microsoft — GPU Failure Prediction (Ushuaia)
+   * FEATURED: Microsoft — GPU Failure Prediction 
    */
   const featuredMicrosoft: Project = {
-    title: "Microsoft — GPU Failure Prediction (Ushuaia)",
+    title: "Microsoft — GPU Failure Prediction",
     description:
       "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. Built an end-to-end MLOps pipeline across telemetry ingestion, feature engineering, model training/tuning, and online evaluation—enabling proactive maintenance and reduced downtime at AI cluster scale.",
     technologies: [
