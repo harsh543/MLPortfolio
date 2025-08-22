@@ -22,8 +22,12 @@ export default function AboutSection() {
           <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-6">About Me</h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Software Engineer II with deep expertise in distributed systems and GPU infrastructure at enterprise scale. Located in Seattle, WA,
-            I specialize in transforming machine learning research into enterprise-grade solutions that deliver
-            measurable business impact.
+            I specialize in LLMs, Agentic AI, and Vector Search, specializing in
+        turning research into production-grade systems. I’ve built GPU failure prediction pipelines processing
+        10M+ daily events with sub-100ms inference, architected Kubernetes-orchestrated services with 99.99% uptime,
+        and deployed RAG-powered knowledge platforms used by global teams. My focus spans 
+        end-to-end MLOps pipelines, distributed inference, and multimodal AI agents—delivering scalable solutions that
+        bridge cutting-edge research with enterprise impact.
           </p>
         </div>
 
