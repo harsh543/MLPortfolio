@@ -150,6 +150,8 @@ export default function ProjectsSection(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.2 });
   const [expandedProjects, setExpandedProjects] = useState<ExpandedMap>({});
+   // NEW: featured tech toggle
+  const [isFeaturedTechExpanded, setIsFeaturedTechExpanded] = useState(false);
 
   const toggleProjectExpansion = (projectIndex: number) => {
     setExpandedProjects((prev) => ({
@@ -374,22 +376,37 @@ export default function ProjectsSection(): JSX.Element {
                 </div>
               </div>
 
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-2">
-                {featuredMicrosoft.technologies.slice(0, 12).map((t, i) => (
-                  <span
-                    key={`ft-${i}`}
-                    className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
-                  >
-                    {t}
-                  </span>
-                ))}
-                <span className="text-xs text-white/70 px-1">
-                  + {Math.max(0, featuredMicrosoft.technologies.length - 12)}{" "}
-                  more…
+             {/* Tech tags with expandable "+N more" */}
+            <div className="flex flex-wrap items-center gap-2">
+              {(isFeaturedTechExpanded
+                ? featuredMicrosoft.technologies
+                : featuredMicrosoft.technologies.slice(0, 12)
+              ).map((t, i) => (
+                <span
+                  key={`ft-${i}-${t}`}
+                  className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
+                >
+                  {t}
                 </span>
-              </div>
+              ))}
+            
+              {featuredMicrosoft.technologies.length > 12 && (
+                <button
+                  type="button"
+                  onClick={() => setIsFeaturedTechExpanded((v) => !v)}
+                  aria-expanded={isFeaturedTechExpanded}
+                  className="text-xs px-3 py-1 rounded-full font-semibold
+                             bg-blue-500/90 hover:bg-blue-500 focus:outline-none
+                             focus:ring-2 focus:ring-offset-2 focus:ring-blue-300
+                             text-white transition-all"
+                >
+                  {isFeaturedTechExpanded
+                    ? "Show less"
+                    : `+${featuredMicrosoft.technologies.length - 12} more`}
+                </button>
+              )}
             </div>
+
 
             <div className="relative">
               <img
