@@ -222,6 +222,135 @@ function MobileMLOpsMini() {
   );
 }
 
+/* --- DESKTOP Monitoring Panel: AUC / F1 / Latency SLO + drift + model switches --- */
+function DesktopMonitoringPanel(): JSX.Element {
+  return (
+    <div
+      role="group"
+      aria-label="Model monitoring: AUC, F1, latency SLO, drift events, and model promotions"
+      className="hidden md:block p-5 bg-slate-900 border-t border-white/10"
+    >
+      <div className="flex items-baseline justify-between mb-3">
+        <div className="text-sm font-semibold text-white">Monitoring (MLflow)</div>
+        <div className="text-xs text-white/70">AUC • F1 • p95 latency • Drift • Promotions</div>
+      </div>
+
+      <svg viewBox="0 0 920 220" className="w-full h-[220px]" role="img">
+        <defs>
+          <linearGradient id="aucL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="100%" stopColor="#34d399" />
+          </linearGradient>
+          <linearGradient id="f1L" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#0ea5e9" />
+          </linearGradient>
+          <linearGradient id="latBand" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
+
+        {/* Chart frame */}
+        <rect x="0" y="0" width="920" height="220" fill="#0b1220" rx="8" />
+        {/* grid */}
+        <g opacity="0.25" stroke="#334155" strokeWidth="1">
+          <path d="M60 40 H880" />
+          <path d="M60 90 H880" />
+          <path d="M60 140 H880" />
+          <path d="M60 190 H880" />
+          <path d="M160 20 V200" />
+          <path d="M360 20 V200" />
+          <path d="M560 20 V200" />
+          <path d="M760 20 V200" />
+        </g>
+
+        {/* Latency SLO band (example: <= 120ms) — map 20..190 to 0..150ms */}
+        {/* Band from 20 to y where 120ms sits; 150ms -> y=190, 0ms -> y=20. */}
+        {/* y = 20 + (120/150)*(190-20) = 20 + 0.8*170 = 156 */}
+        <rect x="60" y="20" width="820" height="136" fill="url(#latBand)" />
+        <text x="68" y="36" fontSize="10" fill="#fbbf24">Latency SLO band (p95 ≤ 120ms)</text>
+
+        {/* AUC (0.5 -> 1 mapped to 190..40) simplified static curve */}
+        <path
+          d="M60 150 L120 142 L180 134 L240 126 L300 116 L360 108 L420 98 L480 90 L540 82 L600 74 L660 68 L720 62 L780 58 L840 54 L880 50"
+          fill="none"
+          stroke="url(#aucL)"
+          strokeWidth="3"
+        />
+        <text x="885" y="48" fontSize="10" fill="#a7f3d0" textAnchor="end">AUC ↑</text>
+
+        {/* F1 (map similar but slightly lower) */}
+        <path
+          d="M60 162 L120 156 L180 150 L240 144 L300 138 L360 132 L420 126 L480 120 L540 116 L600 112 L660 108 L720 106 L780 104 L840 102 L880 100"
+          fill="none"
+          stroke="url(#f1L)"
+          strokeWidth="2.5"
+        />
+        <text x="885" y="98" fontSize="10" fill="#bae6fd" textAnchor="end">F1 ↑</text>
+
+        {/* Drift events */}
+        <g>
+          <circle cx="520" cy="118" r="5" fill="#f43f5e" />
+          <text x="528" y="112" fontSize="10" fill="#fecdd3">drift</text>
+
+          <circle cx="760" cy="106" r="5" fill="#f43f5e" />
+          <text x="768" y="100" fontSize="10" fill="#fecdd3">drift</text>
+        </g>
+
+        {/* Model promotions (vertical markers) */}
+        <g opacity="0.85">
+          <path d="M360 20 V200" stroke="#a78bfa" strokeDasharray="4 4" />
+          <text x="364" y="32" fontSize="10" fill="#ddd">Promoted v21</text>
+
+          <path d="M700 20 V200" stroke="#60a5fa" strokeDasharray="4 4" />
+          <text x="704" y="32" fontSize="10" fill="#ddd">Promoted v23</text>
+        </g>
+
+        {/* Axes labels */}
+        <text x="10" y="195" fontSize="10" fill="#94a3b8">0.5</text>
+        <text x="10" y="145" fontSize="10" fill="#94a3b8">0.7</text>
+        <text x="10" y="95"  fontSize="10" fill="#94a3b8">0.85</text>
+        <text x="10" y="45"  fontSize="10" fill="#94a3b8">1.0</text>
+
+        {/* Legend */}
+        <g transform="translate(70,200)">
+          <rect x="0" y="-12" width="220" height="18" rx="9" fill="#0f172a" stroke="#1f2937" />
+          <g transform="translate(8,-1)">
+            <rect width="14" height="3" rx="1.5" fill="url(#aucL)" />
+            <text x="20" y="3" fontSize="10" fill="#e5e7eb">AUC</text>
+          </g>
+          <g transform="translate(70,-1)">
+            <rect width="14" height="3" rx="1.5" fill="url(#f1L)" />
+            <text x="20" y="3" fontSize="10" fill="#e5e7eb">F1</text>
+          </g>
+          <g transform="translate(120,-3)">
+            <circle cx="4" cy="4" r="4" fill="#f43f5e" />
+            <text x="14" y="6" fontSize="10" fill="#e5e7eb">Drift</text>
+          </g>
+        </g>
+      </svg>
+
+      {/* Status row */}
+      <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
+        <div className="rounded-md bg-white/5 px-3 py-2">
+          <div className="text-white/70">MLflow Model</div>
+          <div className="font-semibold text-white">v23 • Production</div>
+        </div>
+        <div className="rounded-md bg-white/5 px-3 py-2">
+          <div className="text-white/70">Canary</div>
+          <div className="font-semibold text-white">10% traffic</div>
+        </div>
+        <div className="rounded-md bg-white/5 px-3 py-2 flex items-center justify-between">
+          <span className="text-white/70">SLO p95</span>
+          <span className="px-2 py-0.5 rounded bg-emerald-600/80 text-white">Healthy</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 /* --- NEW: ultra-compact, mobile-first diagram (TensorFlow + MLflow) --- */
 function GpuFailureCompactSVG(): JSX.Element {
   return (
@@ -655,9 +784,9 @@ export default function ProjectsSection(): JSX.Element {
           <div className="md:hidden">
             <MobileMLOpsMini />
           </div>
-          <div className="overflow-x-auto overscroll-x-contain no-scrollbar">
-            <GpuFailureCompactSVG />          {/* shows only on mobile via its own md:hidden class */}
-            <MicrosoftMlopsFullWidthSVG />    {/* hidden on mobile, md+ only */}
+          <div className="hidden md:block">
+            <MicrosoftMlopsFullWidthSVG />
+            <DesktopMonitoringPanel />  {/* NEW: fancy desktop monitoring */}
           </div>
           <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
             GPU Failure Prediction
