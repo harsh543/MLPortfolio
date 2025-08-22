@@ -110,6 +110,117 @@ function McpPrReviewSVG(): JSX.Element {
     </svg>
   );
 }
+/* --- MOBILE: concise MLOps pipeline + monitoring sparkline --- */
+function MobileMLOpsMini() {
+  return (
+    <div
+      role="group"
+      aria-label="Mobile MLOps summary"
+      className="p-4 bg-slate-900 text-white"
+    >
+      {/* Step chips */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        {["Telemetry", "Features", "TensorFlow", "MLflow"].map((s) => (
+          <span
+            key={s}
+            className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/10"
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+
+      {/* Inline legend */}
+      <div className="flex items-center gap-4 text-[11px] text-white/80 mb-2">
+        <div className="flex items-center gap-1">
+          <span className="inline-block w-3 h-1.5 rounded bg-emerald-400" />
+          AUC
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="inline-block w-3 h-1.5 rounded bg-sky-400" />
+          F1
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="inline-block w-2.5 h-2.5 rounded-full bg-rose-500" />
+          Drift flag
+        </div>
+      </div>
+
+      {/* Sparkline card */}
+      <div className="rounded-lg bg-black/30 border border-white/5 p-3">
+        <div className="flex items-baseline justify-between mb-2">
+          <div className="text-xs font-semibold">Monitoring</div>
+          <div className="text-[10px] text-white/70">AUC / F1 • SLOs • Drift</div>
+        </div>
+
+        {/* Accessible tiny chart */}
+        <svg
+          viewBox="0 0 320 80"
+          role="img"
+          aria-label="AUC and F1 trend with a drift event"
+          className="w-full h-20"
+        >
+          <defs>
+            <linearGradient id="aucG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#10b981" />
+              <stop offset="100%" stopColor="#34d399" />
+            </linearGradient>
+            <linearGradient id="f1G" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#38bdf8" />
+              <stop offset="100%" stopColor="#0ea5e9" />
+            </linearGradient>
+          </defs>
+
+          {/* grid */}
+          <g opacity=".25" stroke="#334155" strokeWidth="1">
+            <path d="M0 20 H320" />
+            <path d="M0 40 H320" />
+            <path d="M0 60 H320" />
+          </g>
+
+          {/* AUC line */}
+          <path
+            d="M0 60 L40 56 L80 52 L120 48 L160 44 L200 38 L240 32 L280 28 L320 24"
+            fill="none"
+            stroke="url(#aucG)"
+            strokeWidth="3"
+          />
+          {/* F1 line */}
+          <path
+            d="M0 64 L40 62 L80 58 L120 54 L160 50 L200 46 L240 44 L280 42 L320 40"
+            fill="none"
+            stroke="url(#f1G)"
+            strokeWidth="2.5"
+          />
+
+          {/* Drift event marker */}
+          <circle cx="210" cy="46" r="4" fill="#f43f5e" />
+          <text x="216" y="44" fontSize="9" fill="#e5e7eb">drift</text>
+        </svg>
+
+        {/* SLO row */}
+        <div className="mt-2 flex items-center justify-between text-[11px]">
+          <div className="text-white/75">
+            SLO: p95&nbsp;latency <span className="font-semibold text-white">≤ 120ms</span>
+          </div>
+          <span className="px-2 py-0.5 rounded bg-emerald-600/80 text-white">Healthy</span>
+        </div>
+      </div>
+
+      {/* Registry/Serving status */}
+      <div className="mt-3 grid grid-cols-2 gap-2 text-[11px]">
+        <div className="rounded-md bg-white/5 px-2 py-1.5">
+          <div className="text-white/70">MLflow Model</div>
+          <div className="font-semibold">v23 • Production</div>
+        </div>
+        <div className="rounded-md bg-white/5 px-2 py-1.5">
+          <div className="text-white/70">Canary</div>
+          <div className="font-semibold">10% traffic</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* --- NEW: ultra-compact, mobile-first diagram (TensorFlow + MLflow) --- */
 function GpuFailureCompactSVG(): JSX.Element {
@@ -541,6 +652,9 @@ export default function ProjectsSection(): JSX.Element {
       
         {/* Diagram area — safe on mobile via horizontal scroll, responsive swap */}
         <div className="relative bg-slate-950">
+          <div className="md:hidden">
+            <MobileMLOpsMini />
+          </div>
           <div className="overflow-x-auto overscroll-x-contain no-scrollbar">
             <GpuFailureCompactSVG />          {/* shows only on mobile via its own md:hidden class */}
             <MicrosoftMlopsFullWidthSVG />    {/* hidden on mobile, md+ only */}
