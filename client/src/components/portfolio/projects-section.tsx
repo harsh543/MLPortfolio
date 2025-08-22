@@ -111,14 +111,14 @@ function McpPrReviewSVG(): JSX.Element {
   );
 }
 
-/** Full-width Microsoft MLOps pipeline + Datacenter Monitoring inset */
+/** Full-width MLOps pipeline exactly following: Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining */
 function MicrosoftMlopsFullWidthSVG(): JSX.Element {
   return (
     <svg
       role="img"
-      aria-label="MLOps pipeline and Datacenter Monitoring for GPU failure prediction"
-      viewBox="0 0 1400 560"
-      className="w-full h-[420px] md:h-[480px] lg:h-[520px] xl:h-[560px]"
+      aria-label="MLOps pipeline for GPU failure prediction"
+      viewBox="0 0 1600 520"
+      className="w-full h-[360px] md:h-[420px] lg:h-[480px] xl:h-[520px]"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -142,145 +142,117 @@ function MicrosoftMlopsFullWidthSVG(): JSX.Element {
             .title { font: 700 13px ui-sans-serif, system-ui; fill: #e5e7eb; }
             .note  { font: 12px ui-sans-serif, system-ui; fill: #cbd5e1; }
             .arrow { stroke: url(#mlopsB); stroke-width: 3; marker-end: url(#arrowHead); }
-            .chip  { fill: #111827; stroke: #374151; stroke-width: 1; }
+            .rail  { stroke: #334155; stroke-width: 1.25; stroke-dasharray: 6 6; opacity: .6 }
           `}
         </style>
       </defs>
 
-      <rect x="0" y="0" width="1400" height="560" fill="#0b1220" />
-      <rect x="20" y="20" width="1360" height="520" rx="20" fill="#0b1220" />
-      <rect x="20" y="20" width="1360" height="520" rx="20" fill="url(#mlopsA)" opacity="0.08" />
+      {/* background */}
+      <rect x="0" y="0" width="1600" height="520" fill="#0b1220" />
+      <rect x="16" y="16" width="1568" height="488" rx="20" fill="#0b1220" />
+      <rect x="16" y="16" width="1568" height="488" rx="20" fill="url(#mlopsA)" opacity="0.08" />
 
-      {/* LEFT 70%: Expanded MLOps pipeline (3 rows) */}
-      <g transform="translate(36, 56)">
-        {/* Row 1 */}
-        <g filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="300" height="110" rx="14" />
-          <text x="16" y="28" className="title">Data Ingestion</text>
-          <text x="16" y="52" className="note">GPU Telemetry (H100), RackTelemetry</text>
-          <text x="16" y="74" className="note">Redfish Alerts → Azure Blob / Delta Bronze</text>
-        </g>
-        <line className="arrow" x1="302" y1="56" x2="352" y2="56" />
-        <g transform="translate(354,0)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="260" height="110" rx="14" />
-          <text x="16" y="28" className="title">Data Quality</text>
-          <text x="16" y="52" className="note">Schema checks, dedupe, outlier guards</text>
-          <text x="16" y="74" className="note">Great Expectations / custom rules</text>
-        </g>
-        <line className="arrow" x1="616" y1="56" x2="666" y2="56" />
-        <g transform="translate(668,0)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="280" height="110" rx="14" />
-          <text x="16" y="28" className="title">Feature Engineering</text>
-          <text x="16" y="52" className="note">ADF jobs, joins, windowing, imputations</text>
-          <text x="16" y="74" className="note">Delta Silver → Gold</text>
-        </g>
-        <line className="arrow" x1="950" y1="56" x2="1000" y2="56" />
-        <g transform="translate(1002,0)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="280" height="110" rx="14" />
-          <text x="16" y="28" className="title">Feature Store</text>
-          <text x="16" y="52" className="note">Consistency between train/serve</text>
-          <text x="16" y="74" className="note">Point-in-time joins</text>
-        </g>
+      {/* single wide rail */}
+      <line className="rail" x1="60" y1="140" x2="1540" y2="140" />
+      <line className="rail" x1="60" y1="360" x2="1540" y2="360" />
 
-        {/* Row 2 */}
-        <g transform="translate(0,132)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="330" height="120" rx="14" />
-          <text x="16" y="28" className="title">Model Training</text>
-          <text x="16" y="52" className="note">Azure ML (XGB / KNN / LR / LSTM / RSF)</text>
-          <text x="16" y="74" className="note">Hyperparam tuning & CV</text>
-          <text x="16" y="96" className="note">MLflow tracking & artifacts</text>
-        </g>
-        <line className="arrow" x1="332" y1="192" x2="382" y2="192" />
-        <g transform="translate(384,132)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="320" height="120" rx="14" />
-          <text x="16" y="28" className="title">Model Registry</text>
-          <text x="16" y="52" className="note">Versioning, lineage, approvals</text>
-          <text x="16" y="74" className="note">Policy gates (AUC/Brier/F1)</text>
-          <text x="16" y="96" className="note">Bias / fairness checks</text>
-        </g>
-        <line className="arrow" x1="706" y1="192" x2="756" y2="192" />
-        <g transform="translate(758,132)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="320" height="120" rx="14" />
-          <text x="16" y="28" className="title">Canary & Shadow</text>
-          <text x="16" y="52" className="note">Shadow vs prod, canary % traffic</text>
-          <text x="16" y="74" className="note">Auto-rollback on SLO breach</text>
-          <text x="16" y="96" className="note">Explainability hooks</text>
-        </g>
+      {/* Stages */}
+      {/* 1. Ingestion */}
+      <g transform="translate(60, 80)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="180" height="120" rx="14" />
+        <text x="12" y="24" className="title">Ingestion</text>
+        <text x="12" y="48" className="note">GPU Telemetry (H100)</text>
+        <text x="12" y="68" className="note">RackTelemetry / Redfish</text>
+        <text x="12" y="88" className="note">Blob → Delta Bronze</text>
+      </g>
+      <line className="arrow" x1="240" y1="140" x2="280" y2="140" />
 
-        {/* Row 3 */}
-        <g transform="translate(0,272)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="320" height="116" rx="14" />
-          <text x="16" y="28" className="title">Model Serving</text>
-          <text x="16" y="52" className="note">Azure ML endpoints: real-time & batch</text>
-          <text x="16" y="74" className="note">Blue/green, HA</text>
-          <text x="16" y="96" className="note">Cost-aware routing</text>
-        </g>
-        <line className="arrow" x1="322" y1="330" x2="372" y2="330" />
-        <g transform="translate(374,272)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="320" height="116" rx="14" />
-          <text x="16" y="28" className="title">Monitoring</text>
-          <text x="16" y="52" className="note">Latency, error, throughput, OFR risk</text>
-          <text x="16" y="74" className="note">Data / concept drift, freshness</text>
-          <text x="16" y="96" className="note">SLA/SLO tracking</text>
-        </g>
-        <line className="arrow" x1="696" y1="330" x2="746" y2="330" />
-        <g transform="translate(748,272)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="320" height="116" rx="14" />
-          <text x="16" y="28" className="title">Retraining Triggers</text>
-          <text x="16" y="52" className="note">Drift, seasonal, OFR surge</text>
-          <text x="16" y="74" className="note">Human-in-the-loop labels</text>
-          <text x="16" y="96" className="note">Auto-pipeline kickoff</text>
-        </g>
+      {/* 2. Data Quality */}
+      <g transform="translate(280, 80)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="190" height="120" rx="14" />
+        <text x="12" y="24" className="title">Quality</text>
+        <text x="12" y="48" className="note">Schema/Type checks</text>
+        <text x="12" y="68" className="note">Dedup & outliers</text>
+        <text x="12" y="88" className="note">Great Expectations</text>
+      </g>
+      <line className="arrow" x1="470" y1="140" x2="510" y2="140" />
+
+      {/* 3. Feature Engineering */}
+      <g transform="translate(510, 80)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="210" height="120" rx="14" />
+        <text x="12" y="24" className="title">FE</text>
+        <text x="12" y="48" className="note">ADF jobs, joins, windows</text>
+        <text x="12" y="68" className="note">Imputation & scaling</text>
+        <text x="12" y="88" className="note">Delta Silver → Gold</text>
+      </g>
+      <line className="arrow" x1="720" y1="140" x2="760" y2="140" />
+
+      {/* 4. Training */}
+      <g transform="translate(760, 80)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="210" height="120" rx="14" />
+        <text x="12" y="24" className="title">Training</text>
+        <text x="12" y="48" className="note">Azure ML (XGB/TF/PT)</text>
+        <text x="12" y="68" className="note">HP Tuning + CV</text>
+        <text x="12" y="88" className="note">MLflow Tracking</text>
+      </g>
+      <line className="arrow" x1="970" y1="140" x2="1010" y2="140" />
+
+      {/* 5. Registry */}
+      <g transform="translate(1010, 80)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="200" height="120" rx="14" />
+        <text x="12" y="24" className="title">Registry</text>
+        <text x="12" y="48" className="note">Versioning & lineage</text>
+        <text x="12" y="68" className="note">Approvals & gates</text>
+        <text x="12" y="88" className="note">AUC/Brier/F1 thresholds</text>
+      </g>
+      <line className="arrow" x1="1210" y1="140" x2="1250" y2="140" />
+
+      {/* 6. Canary/Shadow */}
+      <g transform="translate(1250, 80)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
+        <text x="12" y="24" className="title">Canary / Shadow</text>
+        <text x="12" y="48" className="note">Shadow vs prod traffic</text>
+        <text x="12" y="68" className="note">Auto-rollback on SLO</text>
+        <text x="12" y="88" className="note">Explainability hooks</text>
       </g>
 
-      {/* RIGHT inset: Datacenter Monitoring */}
-      <g transform="translate(1060, 56)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="300" height="332" rx="16" />
-        <text x="14" y="24" className="title">Datacenter Monitoring</text>
-        <text x="14" y="44" className="note">GPU Health • OFR Queue • SLA Impact</text>
+      {/* second rail arrows */}
+      <line className="arrow" x1="1360" y1="360" x2="1320" y2="360" />
+      <line className="arrow" x1="1120" y1="360" x2="1080" y2="360" />
+      <line className="arrow" x1="880" y1="360" x2="840" y2="360" />
+      <line className="arrow" x1="640" y1="360" x2="600" y2="360" />
+      <line className="arrow" x1="400" y1="360" x2="360" y2="360" />
+      <line className="arrow" x1="160" y1="360" x2="120" y2="360" />
 
-        {/* heatmap */}
-        <g transform="translate(14,60)">
-          <rect className="chip" x="0" y="0" width="272" height="110" rx="10" />
-          {Array.from({ length: 4 }).map((_, r) =>
-            Array.from({ length: 6 }).map((__, c) => {
-              const x = 10 + c * 42;
-              const y = 10 + r * 24;
-              const colors = ["#16a34a", "#22c55e", "#f59e0b", "#ef4444"];
-              const color = colors[(r + c) % colors.length];
-              return <rect key={`cell-${r}-${c}`} x={x} y={y} width="36" height="16" rx="3" fill={color} opacity="0.85" />;
-            })
-          )}
-          <text x="10" y="104" className="note">Cluster Heatmap</text>
-        </g>
-
-        {/* alerts */}
-        <g transform="translate(14,182)">
-          <rect className="chip" x="0" y="0" width="272" height="76" rx="10" />
-          <text x="10" y="20" className="title">Alerts</text>
-          <text x="10" y="40" className="note">• Node A17: PCIe Correctable ↑ (12h)</text>
-          <text x="10" y="58" className="note">• Rack R3: Thermal drift (3h) → Watch</text>
-        </g>
-
-        {/* tiny chart */}
-        <g transform="translate(14,268)">
-          <rect className="chip" x="0" y="0" width="272" height="64" rx="10" />
-          <polyline
-            points="8,48 28,36 48,40 68,28 88,34 108,22 128,30 148,18 168,26 188,20 208,14 228,18 248,10 264,14"
-            fill="none"
-            stroke="#38bdf8"
-            strokeWidth="2"
-          />
-          <text x="10" y="18" className="title">OFR Risk Trend</text>
-          <text x="200" y="18" className="note">past 24h</text>
-        </g>
+      {/* 7. Serving */}
+      <g transform="translate(1120, 300)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
+        <text x="12" y="24" className="title">Serving</text>
+        <text x="12" y="48" className="note">Azure ML: real-time/batch</text>
+        <text x="12" y="68" className="note">Blue/green, HA</text>
+        <text x="12" y="88" className="note">Cost-aware routing</text>
       </g>
 
-      {/* badge */}
-      <g>
-        <rect x="1220" y="24" rx="12" ry="12" width="160" height="28" fill="#10b981" />
-        <text x="1240" y="43" className="title">GPU Failure Prediction</text>
+      {/* 8. Monitoring */}
+      <g transform="translate(880, 300)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
+        <text x="12" y="24" className="title">Monitoring</text>
+        <text x="12" y="48" className="note">Latency, error, throughput</text>
+        <text x="12" y="68" className="note">OFR risk & SLA/SLO</text>
+        <text x="12" y="88" className="note">Drift & freshness</text>
       </g>
+
+      {/* 9. Retraining */}
+      <g transform="translate(640, 300)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
+        <text x="12" y="24" className="title">Retraining</text>
+        <text x="12" y="48" className="note">Triggers: drift/seasonal</text>
+        <text x="12" y="68" className="note">Human-in-the-loop labels</text>
+        <text x="12" y="88" className="note">Auto pipeline kickoff</text>
+      </g>
+
+      {/* loop-back arrow to Ingestion */}
+      <path className="arrow" d="M640,360 C 520,360 520,140 240,140" />
     </svg>
   );
 }
@@ -302,15 +274,14 @@ type ExpandedMap = Record<number, boolean>;
 export default function ProjectsSection(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.2 });
-  const [isFeaturedTechExpanded, setIsFeaturedTechExpanded] = useState(false);
   const [expandedProjects, setExpandedProjects] = useState<ExpandedMap>({});
-  const [showMore, setShowMore] = useState(false);
+  const [isFeaturedTechExpanded, setIsFeaturedTechExpanded] = useState(false);
 
-  /** FEATURED: Microsoft — GPU Failure Prediction*/
+  /** FEATURED: Microsoft — GPU Failure Prediction */
   const featuredMicrosoft: Project = {
     title: "Microsoft — GPU Failure Prediction",
     description:
-      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. End-to-end MLOps covers ingestion, quality, feature engineering, training, registry, canary/shadow, serving, monitoring, and retraining triggers.",
+      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. End-to-end MLOps: Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining.",
     technologies: [
       "Azure Blob Storage",
       "Azure Data Factory",
@@ -319,8 +290,8 @@ export default function ProjectsSection(): JSX.Element {
       "Azure Machine Learning",
       "MLflow",
       "XGBoost",
-      "Tensorflow",
-      "Pytorch",
+      "TensorFlow",
+      "PyTorch",
       "Random Survival Forest (RSF)",
       "Survival Analysis",
       "Data Quality Checks",
@@ -330,19 +301,19 @@ export default function ProjectsSection(): JSX.Element {
       "Auto Rollback",
       "Batch & Online Inference",
       "AUC / Brier / F1",
-      "Document RAG Intelligence System",
+      "Team/Vendor Docs via RAG (SharePoint, OneNote, DOCX/PPT)",
     ],
     alt: "GPU Failure Prediction at Microsoft",
     badges: ["Featured", "Enterprise ML", "Reliability/SRE"],
   };
 
-  /** SECONDARY PROJECTS (hidden behind accordion) */
+  /** PROJECTS GRID (no overflow; always visible) */
   const projects: Project[] = [
     {
       title:
-        "PR Reviewer — Claude-Powered GitHub Review (MCP + Databricks + Notion)",
+        "🧠 PR Reviewer — Claude-Powered GitHub Review (MCP + Databricks + Notion)",
       description:
-        "MCP server that connects Claude to Databricks repos and Notion knowledge. Auto-summarizes PRs, reasons over diffs, cross-references engineering standards, and proposes actionable comments.",
+        "MCP server that connects Claude to Databricks repos and team knowledge in Notion. Auto-summarizes PRs, reasons over diffs, cross-checks engineering standards, and proposes actionable comments.",
       technologies: [
         "Model Context Protocol (MCP)",
         "Claude (Anthropic)",
@@ -365,7 +336,7 @@ export default function ProjectsSection(): JSX.Element {
     {
       title: "Investment Assistant with Databricks Mosaic AI",
       description:
-        "Production-ready investment decision agent using Mosaic AI Agent Framework. Streams Yahoo Finance, persists to Delta, and applies LLM reasoning for Buy/Sell/Hold with human-in-the-loop Review App.",
+        "Production-ready investment decision agent using Mosaic AI Agent Framework. Streams Yahoo Finance, persists to Delta, applies LLM reasoning for Buy/Sell/Hold with a human-in-the-loop Review App.",
       technologies: [
         "Databricks Mosaic AI",
         "Agent Framework",
@@ -450,23 +421,23 @@ export default function ProjectsSection(): JSX.Element {
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 bg-bg-section">
-      <div className="max-w-[1400px] px-6 mx-auto">
+      <div className="max-w-[1600px] px-6 mx-auto">
         {/* Header */}
         <div className={`text-center mb-10 animate-on-scroll ${isVisible ? "animate" : ""}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-3">
             Featured Project
           </h2>
-          <p className="text-lg text-text-secondary max-w-4xl mx-auto">
+          <p className="text-lg text-text-secondary max-w-5xl mx-auto">
             <span className="font-semibold">MLOps Pipeline</span> — Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining
           </p>
         </div>
 
-        {/* Featured: full-width */}
+        {/* Featured Microsoft Card — ZERO IN on the image (full width) */}
         <div
           className={`rounded-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white shadow-xl overflow-hidden animate-on-scroll ${isVisible ? "animate" : ""}`}
           style={{ animationDelay: "0s" }}
         >
-          {/* Top copy */}
+          {/* Copy */}
           <div className="p-8 lg:p-10">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-5 h-5" />
@@ -481,7 +452,6 @@ export default function ProjectsSection(): JSX.Element {
               {featuredMicrosoft.description}
             </p>
 
-            {/* Info tiles */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
               <div className="bg-white/5 rounded-xl p-4">
                 <div className="flex items-center gap-2 text-sm mb-1">
@@ -512,7 +482,7 @@ export default function ProjectsSection(): JSX.Element {
               </div>
             </div>
 
-            {/* Featured tech chips (+N more toggle) */}
+            {/* Tech chips (+N more toggle) */}
             <div className="flex flex-wrap items-center gap-2">
               {(isFeaturedTechExpanded
                 ? featuredMicrosoft.technologies
@@ -543,142 +513,113 @@ export default function ProjectsSection(): JSX.Element {
             </div>
           </div>
 
-          {/* Full-width visual */}
+          {/* THE IMAGE — full width; nothing else crowding it */}
           <div className="relative bg-slate-950">
             <MicrosoftMlopsFullWidthSVG />
             <div className="absolute top-4 right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
               GPU Failure Prediction
             </div>
-            <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur px-3 py-1.5 rounded-full text-xs">
-              Ops docs via <span className="font-semibold">Document RAG</span>
-            </div>
           </div>
         </div>
 
-        {/* Accordion: More Projects */}
-        <div className="mt-10">
-          <button
-            type="button"
-            onClick={() => setShowMore((v) => !v)}
-            aria-expanded={showMore}
-            aria-controls="more-projects"
-            className="mx-auto flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-gray-900 shadow hover:shadow-md transition
-                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
-          >
-            {showMore ? (
-              <>
-                <ChevronUp className="w-4 h-4" />
-                Hide More Projects
-              </>
-            ) : (
-              <>
-                <ChevronDown className="w-4 h-4" />
-                Show More Projects
-              </>
-            )}
-          </button>
+        {/* Your projects — ALWAYS VISIBLE (no overflow/accordion) */}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold text-text-primary mb-6">Projects</h3>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div
+                key={project.title}
+                className="project-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+              >
+                <div className="relative overflow-hidden bg-slate-950">
+                  {project.svg ? (
+                    <div className="w-full" aria-label={project.alt} role="img">
+                      {project.svg}
+                    </div>
+                  ) : (
+                    <img
+                      src={project.image!}
+                      alt={project.alt}
+                      className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                      loading="lazy"
+                    />
+                  )}
+                  {!!project.badges?.length && (
+                    <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
+                      {project.badges.map((b) => (
+                        <span
+                          key={b}
+                          className="bg-black/70 backdrop-blur text-white px-2 py-1 rounded-full text-xs font-medium"
+                        >
+                          {b}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {project.demo && (
+                    <div className="absolute top-4 right-4">
+                      <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                        <Play className="w-3 h-3" />
+                        Live Demo
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-          {/* Collapsible region */}
-          <div
-            id="more-projects"
-            className={`transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden ${
-              showMore ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-          >
-            <div className="pt-8 grid lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <div
-                  key={project.title}
-                  className="project-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
-                >
-                  <div className="relative overflow-hidden bg-slate-950">
-                    {project.svg ? (
-                      <div className="w-full" aria-label={project.alt} role="img">
-                        {project.svg}
-                      </div>
-                    ) : (
-                      <img
-                        src={project.image!}
-                        alt={project.alt}
-                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                        loading="lazy"
-                      />
-                    )}
-                    {!!project.badges?.length && (
-                      <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
-                        {project.badges.map((b) => (
-                          <span
-                            key={b}
-                            className="bg-black/70 backdrop-blur text-white px-2 py-1 rounded-full text-xs font-medium"
-                          >
-                            {b}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {project.demo && (
-                      <div className="absolute top-4 right-4">
-                        <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                          <Play className="w-3 h-3" />
-                          Live Demo
-                        </div>
-                      </div>
-                    )}
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-text-primary mb-3">
+                    {project.title}
+                  </h4>
+                  <p className="text-text-secondary mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Tech tags */}
+                  <div>
+                    {renderTechnologies(project.technologies, index)}
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-text-primary mb-3">
-                      {project.title}
-                    </h3>
-                    <p className="text-text-secondary mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
+                  <div className="flex gap-3">
+                    {project.demo ? (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-center font-medium hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center justify-center gap-2"
+                        aria-label="Open Live Demo"
+                      >
+                        <Play className="w-4 h-4" />
+                        Live Demo
+                      </a>
+                    ) : (
+                      <a
+                        href={project.github || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-primary-blue text-white px-4 py-2 rounded-lg text-center font-medium hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
+                        aria-label="Learn more"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Learn More
+                      </a>
+                    )}
 
-                    {/* Tech tags */}
-                    {renderTechnologies(project.technologies, index)}
-
-                    <div className="flex gap-3">
-                      {project.demo ? (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-center font-medium hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center justify-center gap-2"
-                          aria-label="Open Live Demo"
-                        >
-                          <Play className="w-4 h-4" />
-                          Live Demo
-                        </a>
-                      ) : (
-                        <a
-                          href={project.github || "#"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 bg-primary-blue text-white px-4 py-2 rounded-lg text-center font-medium hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
-                          aria-label="Learn more"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Learn More
-                        </a>
-                      )}
-
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center gap-2"
-                          aria-label="Open GitHub repository"
-                        >
-                          <Github className="w-4 h-4" />
-                          GitHub
-                        </a>
-                      )}
-                    </div>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center gap-2"
+                        aria-label="Open GitHub repository"
+                      >
+                        <Github className="w-4 h-4" />
+                        GitHub
+                      </a>
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
