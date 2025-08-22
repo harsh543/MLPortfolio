@@ -12,11 +12,132 @@ import {
   FileText,
 } from "lucide-react";
 
+/** Inline, brand-safe architecture art for the PR Reviewer project */
+function McpPrReviewSVG(): JSX.Element {
+  return (
+    <svg
+      role="img"
+      aria-label="Diagram: Claude reviews PRs via MCP with GitHub, Databricks, and Notion"
+      viewBox="0 0 1200 420"
+      className="w-full h-48 md:h-56 lg:h-64 xl:h-72"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#1d4ed8" />
+          <stop offset="100%" stopColor="#7c3aed" />
+        </linearGradient>
+        <linearGradient id="gradB" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#22c55e" />
+          <stop offset="100%" stopColor="#06b6d4" />
+        </linearGradient>
+        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="8" stdDeviation="12" floodOpacity="0.25" />
+        </filter>
+        <style>
+          {`
+          .node { fill: #0b1220; stroke: #334155; stroke-width: 1.25; }
+          .chip { fill: #0f172a; stroke: #475569; stroke-width: 1.25; }
+          .label { font: 600 14px ui-sans-serif, system-ui; fill: #e5e7eb; }
+          .sublabel { font: 12px ui-sans-serif, system-ui; fill: #cbd5e1; }
+          .wire { stroke: url(#gradB); stroke-width: 2.75; fill: none; }
+          .pulse { stroke-dasharray: 6 8; animation: dash 3s linear infinite; }
+          @keyframes dash { to { stroke-dashoffset: -140; } }
+        `}
+        </style>
+      </defs>
+
+      {/* background glow */}
+      <rect x="0" y="0" width="1200" height="420" fill="#0b1220" />
+      <rect x="40" y="24" width="1120" height="372" rx="16" fill="#0f172a" />
+      <rect
+        x="40"
+        y="24"
+        width="1120"
+        height="372"
+        rx="16"
+        fill="url(#gradA)"
+        opacity="0.08"
+      />
+
+      {/* wires */}
+      <path
+        className="wire"
+        d="M230 210 C 360 210, 480 140, 600 140 C 720 140, 840 210, 970 210"
+        filter="url(#softShadow)"
+      />
+      <path
+        className="wire pulse"
+        d="M230 240 C 360 240, 480 300, 600 300 C 720 300, 840 240, 970 240"
+      />
+
+      {/* Claude node */}
+      <g transform="translate(140,190)">
+        <rect className="node" width="180" height="80" rx="14" />
+        <circle cx="44" cy="40" r="18" fill="url(#gradA)" />
+        <path
+          d="M37 40a7 7 0 0014 0a7 7 0 00-14 0Z"
+          fill="#fff"
+          opacity=".85"
+        />
+        <text x="78" y="36" className="label">Claude</text>
+        <text x="78" y="56" className="sublabel">AI Reviewer</text>
+      </g>
+
+      {/* MCP Server (this repo) */}
+      <g transform="translate(510,110)">
+        <rect className="chip" width="180" height="200" rx="14" />
+        <rect x="20" y="24" width="140" height="28" rx="6" fill="#1e293b" />
+        <text x="28" y="43" className="label">MCP Server</text>
+        <rect x="20" y="72" width="140" height="20" rx="4" fill="#0ea5e9" opacity=".15" />
+        <text x="28" y="86" className="sublabel">fastmcp + CLI Tools</text>
+        <rect x="20" y="106" width="140" height="20" rx="4" fill="#22c55e" opacity=".15" />
+        <text x="28" y="120" className="sublabel">Diff Reasoning</text>
+        <rect x="20" y="140" width="140" height="20" rx="4" fill="#a78bfa" opacity=".15" />
+        <text x="28" y="154" className="sublabel">RAG Policies</text>
+        <rect x="20" y="174" width="140" height="20" rx="4" fill="#f59e0b" opacity=".15" />
+        <text x="28" y="188" className="sublabel">CI/CD Hooks</text>
+      </g>
+
+      {/* GitHub */}
+      <g transform="translate(960,150)">
+        <rect className="node" width="180" height="60" rx="14" />
+        <circle cx="40" cy="30" r="12" fill="#fff" />
+        <text x="62" y="27" className="label">GitHub</text>
+        <text x="62" y="45" className="sublabel">Pull Requests</text>
+      </g>
+
+      {/* Notion */}
+      <g transform="translate(960,230)">
+        <rect className="node" width="180" height="60" rx="14" />
+        <rect x="28" y="18" width="24" height="24" rx="4" fill="#fff" />
+        <text x="62" y="27" className="label">Notion</text>
+        <text x="62" y="45" className="sublabel">PR Summaries</text>
+      </g>
+
+      {/* Databricks */}
+      <g transform="translate(730,190)">
+        <rect className="node" width="180" height="80" rx="14" />
+        <rect x="30" y="28" width="24" height="24" rx="4" fill="url(#gradA)" />
+        <text x="62" y="46" className="label">Databricks</text>
+        <text x="62" y="66" className="sublabel">Repos / Jobs</text>
+      </g>
+
+      {/* captions */}
+      <text x="160" y="360" className="sublabel" fill="#9ca3af">
+        Claude → MCP → GitHub/Databricks/Notion • Automated PR analysis • Policy-aware comments • Optional Notion logging
+      </text>
+    </svg>
+  );
+}
+
 type Project = {
   title: string;
   description: string;
   technologies: string[];
-  image: string;
+  /** EITHER provide an image URL or an inline SVG via `svg` */
+  image?: string;
+  svg?: JSX.Element;
   alt: string;
   github?: string;
   demo?: string;
@@ -39,25 +160,18 @@ export default function ProjectsSection(): JSX.Element {
 
   /**
    * FEATURED: Microsoft — GPU Failure Prediction (Ushuaia)
-   * - Surfaced from Harsh’s internal Microsoft work and attached deck.
-   * - Explicitly references PCIe fault-code prediction, classification + survival analysis,
-   *   and Azure ML deployment + monitoring.
-   * - Mentions “Document RAG Intelligence System” as the ops knowledge layer (SOPs, playbooks, runbooks).
    */
   const featuredMicrosoft: Project = {
     title: "Microsoft — GPU Failure Prediction (Ushuaia)",
     description:
-      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. Built an end-to-end pipeline across RackTelemetry/Redfish ingestion, feature engineering, model training/tuning, and online evaluation—enabling proactive maintenance and reduced downtime at AI cluster scale. Paired with my Document RAG Intelligence System for searchable SOPs, on-call runbooks, and fault-code reasoning to accelerate incident response.",
+      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. Built an end-to-end pipeline across various Telemetry ingestion, feature engineering, model training/tuning, and online evaluation—enabling proactive maintenance and reduced downtime at AI cluster scale. Paired with my Document RAG Intelligence System for searchable SOPs, on-call runbooks, and fault-code reasoning to accelerate incident response.",
     technologies: [
-      // Cloud + Data
       "Azure Blob Storage",
       "Azure Data Factory",
       "Databricks",
       "Delta Lake",
-      // ML Platform
       "Azure Machine Learning",
       "MLflow",
-      // Modeling
       "XGBoost",
       "KNN",
       "Logistic Regression",
@@ -65,15 +179,9 @@ export default function ProjectsSection(): JSX.Element {
       "LSTM",
       "Random Survival Forest (RSF)",
       "Survival Analysis",
-      // Telemetry Domain
-      "RackTelemetry",
-      "Redfish Alerts",
       "PCIe Error Prediction",
-      "H100 OFR",
-      // Ops/Observability
       "Batch & Online Inference",
       "AUC / Brier / F1",
-      // Knowledge
       "Document RAG Intelligence System",
     ],
     image:
@@ -84,36 +192,71 @@ export default function ProjectsSection(): JSX.Element {
 
   /**
    * PROJECTS GRID
-   * Replace the 3-item list with ONE spotlighted project:
-   * - Databricks MCP Server for Claude + Notion → DevOps & PR Review productivity.
-   * - Add ‘Live Demo’ and GitHub links.
-   * - Position as a developer-productivity accelerator (CI/CD guardrails, diff-aware context, RAG).
+   * Spotlight PR Reviewer (Claude + MCP) + the two other projects requested.
    */
   const projects: Project[] = [
     {
       title:
-        "Databricks MCP Server — Claude + Notion for PR Review & DevOps Productivity",
+        "🧠 PR Reviewer — Claude-Powered GitHub Review (MCP + Databricks + Notion)",
       description:
-        "A Model Context Protocol (MCP) server that connects Claude to Databricks repos and Notion knowledge. It auto-summarizes PRs, reasons over diffs, cross-references your Notion engineering standards, and proposes actionable review comments. With RAG-powered grounding—using the same Document RAG Intelligence System that supports my Microsoft reliability work—developers get faster, higher-quality reviews and safer merges. Includes a live demo showcasing end-to-end flow.",
+        "A Model Context Protocol (MCP) server that connects Claude to Databricks repos and Notion knowledge. It auto-summarizes PRs, reasons over diffs, cross-references engineering standards, and proposes actionable review comments. Grounded by my Document RAG Intelligence System for consistent policy checks and safer merges.",
       technologies: [
         "Model Context Protocol (MCP)",
         "Claude (Anthropic)",
         "Databricks Repos/API",
+        "GitHub API",
         "Notion API",
         "TypeScript",
         "Node.js",
+        "Python",
         "RAG (Vector Search)",
-        "DevOps Productivity",
         "CI/CD Guardrails",
-        "GitHub PR Workflows",
         "Docker",
       ],
-      image:
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500",
-      alt: "Databricks MCP Server for PR Review",
+      svg: <McpPrReviewSVG />,
+      alt: "Claude + MCP architecture diagram with GitHub, Databricks, and Notion",
       github: "https://github.com/harsh543/mcp-pr-review-databricks",
       demo: "https://www.youtube.com/watch?v=zzgMfgQwXwU",
       badges: ["Developer Productivity", "Live Demo"],
+    },
+    {
+      title: "Investment Assistant with Databricks Mosaic AI",
+      description:
+        "Production-ready investment decision agent using Mosaic AI Agent Framework. Streams Yahoo Finance, persists to Delta, and applies LLM reasoning for Buy/Sell/Hold with human-in-the-loop Review App.",
+      technologies: [
+        "Databricks Mosaic AI",
+        "Agent Framework",
+        "Yahoo Finance API",
+        "Delta Tables",
+        "MLflow",
+        "Model Serving",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500",
+      alt: "Investment Assistant dashboard concept",
+      github: "https://github.com/harsh543/databricks-agent-mosaic",
+      badges: ["Agents", "Data + LLM"],
+    },
+    {
+      title: "AI-Powered Hotel Discovery Engine",
+      description:
+        "Context-aware travel recommender built with Azure AI Search + RAG to surface hotels by cleanliness, location, and service quality—not just price and ratings.",
+      technologies: [
+        "Azure AI Search",
+        "Azure OpenAI Service",
+        "Azure AI Foundry",
+        "Vector Embeddings",
+        "Python",
+        "FastAPI",
+        "LangChain",
+        "RAG Pipeline",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500",
+      alt: "Hotel discovery interface concept",
+      github: "https://github.com/harsh543/hotel-review-rag-ai-search",
+      demo: "https://www.youtube.com/watch?v=qOR3eW8ik1c",
+      badges: ["RAG", "Live Demo"],
     },
   ];
 
@@ -127,7 +270,7 @@ export default function ProjectsSection(): JSX.Element {
         {visibleTechs.map((tech, techIndex) => (
           <span
             key={`${tech}-${techIndex}`}
-            className={`tech-tag bg-gray-900/90 text-white px-3 py-1 text-xs rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400`}
+            className="tech-tag bg-gray-900/90 text-white px-3 py-1 text-xs rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
             aria-label={`Technology: ${tech}`}
           >
             {tech}
@@ -259,7 +402,7 @@ export default function ProjectsSection(): JSX.Element {
           </div>
         </div>
 
-        {/* Projects Grid (single spotlight entry) */}
+        {/* Projects Grid */}
         <div className="grid lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
@@ -269,13 +412,23 @@ export default function ProjectsSection(): JSX.Element {
               }`}
               style={{ animationDelay: `${index * 0.15 + 0.05}s` }}
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.alt}
-                  className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                  loading="lazy"
-                />
+              <div className="relative overflow-hidden bg-slate-950">
+                {project.svg ? (
+                  <div
+                    className="w-full"
+                    aria-label={project.alt}
+                    role="img"
+                  >
+                    {project.svg}
+                  </div>
+                ) : (
+                  <img
+                    src={project.image!}
+                    alt={project.alt}
+                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
                 {!!project.badges?.length && (
                   <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
                     {project.badges.map((b) => (
@@ -403,7 +556,6 @@ export default function ProjectsSection(): JSX.Element {
             transform: translateY(0);
           }
         }
-
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out forwards;
         }
