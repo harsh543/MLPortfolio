@@ -111,148 +111,181 @@ function McpPrReviewSVG(): JSX.Element {
   );
 }
 
-/** Full-width MLOps pipeline exactly following: Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining */
+/* --- NEW: ultra-compact, mobile-first diagram (TensorFlow + MLflow) --- */
+function GpuFailureCompactSVG(): JSX.Element {
+  return (
+    <svg
+      role="img"
+      aria-label="Mobile diagram: Telemetry to TensorFlow classifier with MLflow monitoring"
+      viewBox="0 0 720 240"
+      className="w-[680px] h-[220px] md:hidden"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#7c3aed" />
+        </linearGradient>
+        <linearGradient id="gB" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#10b981" />
+          <stop offset="100%" stopColor="#06b6d4" />
+        </linearGradient>
+        <marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="url(#gB)" />
+        </marker>
+        <style>{`
+          .card { fill:#0f172a; stroke:#334155; stroke-width:1.25 }
+          .ttl  { font:700 13px ui-sans-serif,system-ui; fill:#e5e7eb }
+          .sub  { font:12px ui-sans-serif,system-ui; fill:#cbd5e1 }
+          .arr  { stroke:url(#gB); stroke-width:3; fill:none; marker-end:url(#m) }
+        `}</style>
+      </defs>
+
+      <rect x="0" y="0" width="720" height="240" fill="#0b1220" />
+      <rect x="8" y="8" width="704" height="224" rx="16" fill="url(#gA)" opacity=".08" />
+
+      {/* Telemetry */}
+      <g transform="translate(16,60)">
+        <rect className="card" width="150" height="120" rx="12" />
+        <text x="12" y="28" className="ttl">Telemetry</text>
+        <text x="12" y="52" className="sub">H100/Rack metrics</text>
+        <text x="12" y="72" className="sub">Delta Bronze</text>
+      </g>
+      <line className="arr" x1="166" y1="120" x2="210" y2="120" />
+
+      {/* Features */}
+      <g transform="translate(210,60)">
+        <rect className="card" width="150" height="120" rx="12" />
+        <text x="12" y="28" className="ttl">Features</text>
+        <text x="12" y="52" className="sub">Windows/Scaling</text>
+        <text x="12" y="72" className="sub">Delta Silver→Gold</text>
+      </g>
+      <line className="arr" x1="360" y1="120" x2="404" y2="120" />
+
+      {/* TensorFlow Classifier */}
+      <g transform="translate(404,46)">
+        <rect className="card" width="170" height="148" rx="12" />
+        <text x="12" y="28" className="ttl">TensorFlow</text>
+        <text x="12" y="52" className="sub">Classifier: OFR risk</text>
+        <text x="12" y="72" className="sub">Outputs: p(failure),</text>
+        <text x="12" y="88" className="sub">time-to-failure</text>
+        <text x="12" y="112" className="sub">Tracked in MLflow</text>
+      </g>
+      <line className="arr" x1="574" y1="120" x2="612" y2="120" />
+
+      {/* MLflow/Monitoring */}
+      <g transform="translate(612,46)">
+        <rect className="card" width="92" height="148" rx="12" />
+        <text x="12" y="28" className="ttl">MLflow</text>
+        <text x="12" y="52" className="sub">Registry</text>
+        <text x="12" y="72" className="sub">Serving</text>
+        <text x="12" y="92" className="sub">Monitor</text>
+      </g>
+    </svg>
+  );
+}
+
+/* --- UPDATED: desktop/tablet diagram (trimmed and clearer) --- */
 function MicrosoftMlopsFullWidthSVG(): JSX.Element {
   return (
     <svg
       role="img"
-      aria-label="MLOps pipeline for GPU failure prediction"
-      viewBox="0 0 1600 520"
-      className="w-full h-[360px] md:h-[420px] lg:h-[480px] xl:h-[520px]"
+      aria-label="MLOps: Telemetry → Features → TensorFlow Classifier → MLflow Registry/Serving → Monitoring → Retraining"
+      viewBox="0 0 1600 420"
+      className="hidden md:block w-full h-[340px] lg:h-[400px]"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
-        <linearGradient id="mlopsA" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="mlA" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#0ea5e9" />
           <stop offset="100%" stopColor="#22c55e" />
         </linearGradient>
-        <linearGradient id="mlopsB" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="mlB" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#7c3aed" />
           <stop offset="100%" stopColor="#1d4ed8" />
         </linearGradient>
-        <filter id="mlopsShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <marker id="ah" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="url(#mlB)" />
+        </marker>
+        <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
           <feDropShadow dx="0" dy="6" stdDeviation="10" floodOpacity="0.25" />
         </filter>
-        <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 z" fill="url(#mlopsB)" />
-        </marker>
-        <style>
-          {`
-            .panel { fill: #0f172a; stroke: #334155; stroke-width: 1.25; }
-            .title { font: 700 13px ui-sans-serif, system-ui; fill: #e5e7eb; }
-            .note  { font: 12px ui-sans-serif, system-ui; fill: #cbd5e1; }
-            .arrow { stroke: url(#mlopsB); stroke-width: 3; marker-end: url(#arrowHead); }
-            .rail  { stroke: #334155; stroke-width: 1.25; stroke-dasharray: 6 6; opacity: .6 }
-          `}
-        </style>
+        <style>{`
+          .p { fill:#0f172a; stroke:#334155; stroke-width:1.25 }
+          .t { font:700 13px ui-sans-serif,system-ui; fill:#e5e7eb }
+          .n { font:12px ui-sans-serif,system-ui; fill:#cbd5e1 }
+          .a { stroke:url(#mlB); stroke-width:3; fill:none; marker-end:url(#ah) }
+          .rail { stroke:#334155; stroke-width:1.25; stroke-dasharray:6 6; opacity:.6 }
+        `}</style>
       </defs>
 
-      {/* background */}
-      <rect x="0" y="0" width="1600" height="520" fill="#0b1220" />
-      <rect x="16" y="16" width="1568" height="488" rx="20" fill="#0b1220" />
-      <rect x="16" y="16" width="1568" height="488" rx="20" fill="url(#mlopsA)" opacity="0.08" />
+      <rect x="0" y="0" width="1600" height="420" fill="#0b1220" />
+      <rect x="16" y="16" width="1568" height="388" rx="20" fill="url(#mlA)" opacity=".08" />
 
-      {/* single wide rail */}
-      <line className="rail" x1="60" y1="140" x2="1540" y2="140" />
-      <line className="rail" x1="60" y1="360" x2="1540" y2="360" />
+      {/* Top rail */}
+      <line className="rail" x1="80" y1="120" x2="1520" y2="120" />
 
-      {/* Stages */}
-      {/* 1. Ingestion */}
-      <g transform="translate(60, 80)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="180" height="120" rx="14" />
-        <text x="12" y="24" className="title">Ingestion</text>
-        <text x="12" y="48" className="note">GPU Telemetry (H100)</text>
-        <text x="12" y="68" className="note">RackTelemetry / Redfish</text>
-        <text x="12" y="88" className="note">Blob → Delta Bronze</text>
+      {/* Ingestion */}
+      <g transform="translate(80, 60)" filter="url(#sh)">
+        <rect className="p" width="200" height="120" rx="14" />
+        <text x="12" y="26" className="t">Telemetry</text>
+        <text x="12" y="50" className="n">H100/Rack metrics</text>
+        <text x="12" y="70" className="n">Blob → Delta Bronze</text>
       </g>
-      <line className="arrow" x1="240" y1="140" x2="280" y2="140" />
+      <line className="a" x1="280" y1="120" x2="320" y2="120" />
 
-      {/* 2. Data Quality */}
-      <g transform="translate(280, 80)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="190" height="120" rx="14" />
-        <text x="12" y="24" className="title">Quality</text>
-        <text x="12" y="48" className="note">Schema/Type checks</text>
-        <text x="12" y="68" className="note">Dedup & outliers</text>
-        <text x="12" y="88" className="note">Great Expectations</text>
+      {/* Features */}
+      <g transform="translate(320, 60)" filter="url(#sh)">
+        <rect className="p" width="220" height="120" rx="14" />
+        <text x="12" y="26" className="t">Feature Engineering</text>
+        <text x="12" y="50" className="n">Joins, windows, scaling</text>
+        <text x="12" y="70" className="n">Delta Silver → Gold</text>
       </g>
-      <line className="arrow" x1="470" y1="140" x2="510" y2="140" />
+      <line className="a" x1="540" y1="120" x2="580" y2="120" />
 
-      {/* 3. Feature Engineering */}
-      <g transform="translate(510, 80)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="210" height="120" rx="14" />
-        <text x="12" y="24" className="title">FE</text>
-        <text x="12" y="48" className="note">ADF jobs, joins, windows</text>
-        <text x="12" y="68" className="note">Imputation & scaling</text>
-        <text x="12" y="88" className="note">Delta Silver → Gold</text>
+      {/* TensorFlow Classifier */}
+      <g transform="translate(580, 44)" filter="url(#sh)">
+        <rect className="p" width="260" height="152" rx="14" />
+        <text x="12" y="28" className="t">Training — TensorFlow</text>
+        <text x="12" y="52" className="n">Classifier: OFR risk</text>
+        <text x="12" y="72" className="n">Target: failure / TTL</text>
+        <text x="12" y="92" className="n">Tracked with MLflow</text>
       </g>
-      <line className="arrow" x1="720" y1="140" x2="760" y2="140" />
+      <line className="a" x1="840" y1="120" x2="880" y2="120" />
 
-      {/* 4. Training */}
-      <g transform="translate(760, 80)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="210" height="120" rx="14" />
-        <text x="12" y="24" className="title">Training</text>
-        <text x="12" y="48" className="note">Azure ML (XGB/TF/PT)</text>
-        <text x="12" y="68" className="note">HP Tuning + CV</text>
-        <text x="12" y="88" className="note">MLflow Tracking</text>
+      {/* MLflow Registry / Serving */}
+      <g transform="translate(880, 60)" filter="url(#sh)">
+        <rect className="p" width="240" height="120" rx="14" />
+        <text x="12" y="26" className="t">MLflow Registry</text>
+        <text x="12" y="50" className="n">Models + lineage</text>
+        <text x="12" y="70" className="n">Promote / rollback</text>
       </g>
-      <line className="arrow" x1="970" y1="140" x2="1010" y2="140" />
+      <line className="a" x1="1120" y1="120" x2="1160" y2="120" />
 
-      {/* 5. Registry */}
-      <g transform="translate(1010, 80)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="200" height="120" rx="14" />
-        <text x="12" y="24" className="title">Registry</text>
-        <text x="12" y="48" className="note">Versioning & lineage</text>
-        <text x="12" y="68" className="note">Approvals & gates</text>
-        <text x="12" y="88" className="note">AUC/Brier/F1 thresholds</text>
+      <g transform="translate(1160, 60)" filter="url(#sh)">
+        <rect className="p" width="200" height="120" rx="14" />
+        <text x="12" y="26" className="t">Serving</text>
+        <text x="12" y="50" className="n">Batch + real-time</text>
+        <text x="12" y="70" className="n">Blue/green, HA</text>
       </g>
-      <line className="arrow" x1="1210" y1="140" x2="1250" y2="140" />
+      <line className="a" x1="1360" y1="120" x2="1400" y2="120" />
 
-      {/* 6. Canary/Shadow */}
-      <g transform="translate(1250, 80)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
-        <text x="12" y="24" className="title">Canary / Shadow</text>
-        <text x="12" y="48" className="note">Shadow vs prod traffic</text>
-        <text x="12" y="68" className="note">Auto-rollback on SLO</text>
-        <text x="12" y="88" className="note">Explainability hooks</text>
+      {/* Monitoring (bottom) */}
+      <line className="rail" x1="1400" y1="300" x2="200" y2="300" />
+      <g transform="translate(1260, 240)" filter="url(#sh)">
+        <rect className="p" width="220" height="120" rx="14" />
+        <text x="12" y="26" className="t">Monitoring</text>
+        <text x="12" y="50" className="n">AUC/Brier/F1 • Drift</text>
+        <text x="12" y="70" className="n">Freshness • SLOs</text>
       </g>
-
-      {/* second rail arrows */}
-      <line className="arrow" x1="1360" y1="360" x2="1320" y2="360" />
-      <line className="arrow" x1="1120" y1="360" x2="1080" y2="360" />
-      <line className="arrow" x1="880" y1="360" x2="840" y2="360" />
-      <line className="arrow" x1="640" y1="360" x2="600" y2="360" />
-      <line className="arrow" x1="400" y1="360" x2="360" y2="360" />
-      <line className="arrow" x1="160" y1="360" x2="120" y2="360" />
-
-      {/* 7. Serving */}
-      <g transform="translate(1120, 300)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
-        <text x="12" y="24" className="title">Serving</text>
-        <text x="12" y="48" className="note">Azure ML: real-time/batch</text>
-        <text x="12" y="68" className="note">Blue/green, HA</text>
-        <text x="12" y="88" className="note">Cost-aware routing</text>
+      <line className="a" x1="1260" y1="300" x2="1200" y2="300" />
+      <g transform="translate(980, 240)" filter="url(#sh)">
+        <rect className="p" width="220" height="120" rx="14" />
+        <text x="12" y="26" className="t">Retraining</text>
+        <text x="12" y="50" className="n">Drift/seasonal triggers</text>
+        <text x="12" y="70" className="n">Auto pipelines</text>
       </g>
-
-      {/* 8. Monitoring */}
-      <g transform="translate(880, 300)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
-        <text x="12" y="24" className="title">Monitoring</text>
-        <text x="12" y="48" className="note">Latency, error, throughput</text>
-        <text x="12" y="68" className="note">OFR risk & SLA/SLO</text>
-        <text x="12" y="88" className="note">Drift & freshness</text>
-      </g>
-
-      {/* 9. Retraining */}
-      <g transform="translate(640, 300)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="220" height="120" rx="14" />
-        <text x="12" y="24" className="title">Retraining</text>
-        <text x="12" y="48" className="note">Triggers: drift/seasonal</text>
-        <text x="12" y="68" className="note">Human-in-the-loop labels</text>
-        <text x="12" y="88" className="note">Auto pipeline kickoff</text>
-      </g>
-
-      {/* loop-back arrow to Ingestion */}
-      <path className="arrow" d="M640,360 C 520,360 520,140 240,140" />
+      <path className="a" d="M980,300 C 860,300 860,120 320,120" />
     </svg>
   );
 }
@@ -432,95 +465,91 @@ export default function ProjectsSection(): JSX.Element {
           </p>
         </div>
 
-        {/* Featured Microsoft Card — ZERO IN on the image (full width) */}
-        <div
-          className={`rounded-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white shadow-xl overflow-hidden animate-on-scroll ${isVisible ? "animate" : ""}`}
-          style={{ animationDelay: "0s" }}
-        >
-          {/* Copy */}
-          <div className="p-8 lg:p-10">
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="w-5 h-5" />
-              <span className="text-xs font-semibold px-2 py-0.5 bg-white/10 rounded-full tracking-wide">
-                Featured
-              </span>
+     {/* FEATURED Microsoft Card (mobile-safe) */}
+      <div
+        className={`rounded-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white shadow-xl overflow-hidden animate-on-scroll ${isVisible ? "animate" : ""}`}
+      >
+        {/* Copy */}
+        <div className="p-6 sm:p-8 lg:p-10">
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-5 h-5" />
+            <span className="text-xs font-semibold px-2 py-0.5 bg-white/10 rounded-full tracking-wide">
+              Featured
+            </span>
+          </div>
+      
+          <h3 className="text-2xl sm:text-3xl font-bold mb-2">
+            {featuredMicrosoft.title}
+          </h3>
+          <p className="text-white/90 leading-relaxed mb-5 sm:mb-6">
+            {featuredMicrosoft.description}
+          </p>
+      
+          {/* 3-up stats fold to 1-up on mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="bg-white/5 rounded-xl p-4">
+              <div className="flex items-center gap-2 text-sm mb-1">
+                <Activity className="w-4 h-4" />
+                <span className="font-semibold">Use Case</span>
+              </div>
+              <p className="text-white/80 text-sm">
+                Predict H100 OFR risk & time-to-failure from telemetry.
+              </p>
             </div>
-            <h3 className="text-2xl lg:text-3xl font-bold mb-3">
-              {featuredMicrosoft.title}
-            </h3>
-            <p className="text-white/90 leading-relaxed mb-6">
-              {featuredMicrosoft.description}
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              <div className="bg-white/5 rounded-xl p-4">
-                <div className="flex items-center gap-2 text-sm mb-1">
-                  <Activity className="w-4 h-4" />
-                  <span className="font-semibold">Use Case</span>
-                </div>
-                <p className="text-white/80 text-sm">
-                  Predict H100 OFR risk & time-to-failure from telemetry to prevent downtime and reduce repair costs.
-                </p>
+            <div className="bg-white/5 rounded-xl p-4">
+              <div className="flex items-center gap-2 text-sm mb-1">
+                <ServerCog className="w-4 h-4" />
+                <span className="font-semibold">Pipeline</span>
               </div>
-              <div className="bg-white/5 rounded-xl p-4">
-                <div className="flex items-center gap-2 text-sm mb-1">
-                  <ServerCog className="w-4 h-4" />
-                  <span className="font-semibold">MLOps Pipeline</span>
-                </div>
-                <p className="text-white/80 text-sm">
-                  Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining.
-                </p>
-              </div>
-              <div className="bg-white/5 rounded-xl p-4">
-                <div className="flex items-center gap-2 text-sm mb-1">
-                  <FileText className="w-4 h-4" />
-                  <span className="font-semibold">Ops Knowledge (Optional)</span>
-                </div>
-                <p className="text-white/80 text-sm">
-                  Team docs & vendor specs (SharePoint, OneNote, DOCX/PPT) surfaced via Document RAG when needed.
-                </p>
-              </div>
+              <p className="text-white/80 text-sm">
+                Telemetry → Features → <span className="font-semibold">TensorFlow Classifier</span> → MLflow.
+              </p>
             </div>
-
-            {/* Tech chips (+N more toggle) */}
-            <div className="flex flex-wrap items-center gap-2">
-              {(isFeaturedTechExpanded
-                ? featuredMicrosoft.technologies
-                : featuredMicrosoft.technologies.slice(0, 12)
-              ).map((t, i) => (
-                <span
-                  key={`ft-${i}-${t}`}
-                  className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
-                >
-                  {t}
-                </span>
-              ))}
-              {featuredMicrosoft.technologies.length > 12 && (
-                <button
-                  type="button"
-                  onClick={() => setIsFeaturedTechExpanded((v) => !v)}
-                  aria-expanded={isFeaturedTechExpanded}
-                  className="text-xs px-3 py-1 rounded-full font-semibold
-                             bg-blue-500/90 hover:bg-blue-500 focus:outline-none
-                             focus:ring-2 focus:ring-offset-2 focus:ring-blue-300
-                             text-white transition-all"
-                >
-                  {isFeaturedTechExpanded
-                    ? "Show less"
-                    : `+${featuredMicrosoft.technologies.length - 12} more`}
-                </button>
-              )}
+            <div className="bg-white/5 rounded-xl p-4">
+              <div className="flex items-center gap-2 text-sm mb-1">
+                <FileText className="w-4 h-4" />
+                <span className="font-semibold">Monitoring</span>
+              </div>
+              <p className="text-white/80 text-sm">
+                AUC/Brier/F1, drift, freshness, SLOs with auto-retrain.
+              </p>
             </div>
           </div>
-
-          {/* THE IMAGE — full width; nothing else crowding it */}
-          <div className="relative bg-slate-950">
-            <MicrosoftMlopsFullWidthSVG />
-            <div className="absolute top-4 right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
-              GPU Failure Prediction
-            </div>
+      
+          {/* Tech chips with wrap + toggle preserved */}
+          <div className="flex flex-wrap items-center gap-2">
+            {(isFeaturedTechExpanded
+              ? featuredMicrosoft.technologies
+              : featuredMicrosoft.technologies.slice(0, 12)
+            ).map((t, i) => (
+              <span key={`ft-${i}-${t}`} className="bg-white/10 text-white text-xs px-3 py-1 rounded-full">
+                {t}
+              </span>
+            ))}
+            {featuredMicrosoft.technologies.length > 12 && (
+              <button
+                type="button"
+                onClick={() => setIsFeaturedTechExpanded(v => !v)}
+                aria-expanded={isFeaturedTechExpanded}
+                className="text-xs px-3 py-1 rounded-full font-semibold bg-blue-500/90 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
+              >
+                {isFeaturedTechExpanded ? "Show less" : `+${featuredMicrosoft.technologies.length - 12} more`}
+              </button>
+            )}
           </div>
         </div>
+      
+        {/* Diagram area — safe on mobile via horizontal scroll, responsive swap */}
+        <div className="relative bg-slate-950">
+          <div className="overflow-x-auto overscroll-x-contain no-scrollbar">
+            <GpuFailureCompactSVG />          {/* shows only on mobile via its own md:hidden class */}
+            <MicrosoftMlopsFullWidthSVG />    {/* hidden on mobile, md+ only */}
+          </div>
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
+            GPU Failure Prediction
+          </div>
+        </div>
+      </div>
 
         {/* Your projects — ALWAYS VISIBLE (no overflow/accordion) */}
         <div className="mt-12">
