@@ -39,10 +39,10 @@ export default function HeroSection() {
             <h2 className="text-xl lg:text-2xl font-light text-gray-100 max-w-2xl">
               Building production-scale ML systems that process millions of events daily with enterprise-grade reliability
             </h2>
-            <p className="text-lg lg:text-xl text-gray-200 max-w-2xl">
-              Specialized in Databricks Agent Framework, RAG systems, and ML infrastructure at Microsoft.
-              Transforming AI research into production systems that deliver measurable business impact.
-            </p>
+           <p className="text-lg lg:text-xl text-gray-200 max-w-2xl">
+              Specialized in Agentic AI, Vector Search, and end-to-end MLOps at Microsoft—delivering
+              production systems that process millions of events daily with 99.99% reliability.
+           </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <button
