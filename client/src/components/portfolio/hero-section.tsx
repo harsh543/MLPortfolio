@@ -84,9 +84,9 @@ export default function HeroSection() {
           <div className="text-center">
             <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
               <div className="text-3xl lg:text-4xl font-bold text-accent-yellow mb-2">
-                {dailyDataPB}PB+
+                {dailyDataPB}M+
               </div>
-              <div className="text-lg font-semibold">Data Volume</div>
+              <div className="text-lg font-semibold">Data Events</div>
               <div className="text-sm text-gray-200">Processed per day</div>
             </div>
           </div>
