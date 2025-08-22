@@ -41,7 +41,7 @@ export default function AboutSection() {
               <span className="text-text-primary font-semibold"> millions of GPUs from hitting OFR in 60 days</span>. 
               I built ML pipelines predicting 
               <span className="text-text-primary font-semibold"> GPU failures 13 days ahead</span> while 
-              processing <span className="text-text-primary font-semibold"> petabytes of telemetry daily</span>. 
+              processing <span className="text-text-primary font-semibold"> millions of telemetry events daily</span>. 
               My expertise spans designing 
               <span className="text-text-primary font-semibold"> Kubernetes-orchestrated inference</span> 
               with <span className="text-text-primary font-semibold"> 99.99% availability</span>, 
