@@ -131,12 +131,12 @@ function McpPrReviewSVG(): JSX.Element {
   );
 }
 
-/** Inline, brand-safe MLOps pipeline art for the Microsoft featured project */
+/** Broader, denser Microsoft MLOps pipeline + Datacenter Monitoring inset */
 function MicrosoftMlopsSVG(): JSX.Element {
   return (
     <svg
       role="img"
-      aria-label="MLOps pipeline: Data Ingestion → Feature Engineering → Training → Evaluation → Deployment → Online Evaluation"
+      aria-label="MLOps pipeline and Datacenter Monitoring for GPU failure prediction"
       viewBox="0 0 1200 420"
       className="w-full h-full"
       preserveAspectRatio="xMidYMid meet"
@@ -158,77 +158,136 @@ function MicrosoftMlopsSVG(): JSX.Element {
         </marker>
         <style>
           {`
-            .stage { fill: #0f172a; stroke: #334155; stroke-width: 1.25; }
-            .stageTitle { font: 600 13px ui-sans-serif, system-ui; fill: #e5e7eb; }
-            .stageNote { font: 12px ui-sans-serif, system-ui; fill: #cbd5e1; }
+            .panel { fill: #0f172a; stroke: #334155; stroke-width: 1.25; }
+            .title { font: 700 13px ui-sans-serif, system-ui; fill: #e5e7eb; }
+            .note  { font: 12px ui-sans-serif, system-ui; fill: #cbd5e1; }
             .arrow { stroke: url(#mlopsB); stroke-width: 3; marker-end: url(#arrowHead); }
+            .chip  { fill: #111827; stroke: #374151; stroke-width: 1; }
           `}
         </style>
       </defs>
 
+      {/* background */}
       <rect x="0" y="0" width="1200" height="420" fill="#0b1220" />
-      <rect x="24" y="24" width="1152" height="372" rx="18" fill="#0b1220" />
-      <rect x="24" y="24" width="1152" height="372" rx="18" fill="url(#mlopsA)" opacity="0.08" />
+      <rect x="20" y="20" width="1160" height="380" rx="18" fill="#0b1220" />
+      <rect x="20" y="20" width="1160" height="380" rx="18" fill="url(#mlopsA)" opacity="0.08" />
 
-      {/* pipeline stages: 6 boxes across */}
-      <g transform="translate(70, 120)">
-        {/* Data Ingestion */}
+      {/* LEFT: Expanded MLOps pipeline (wider and denser) */}
+      <g transform="translate(36, 52)">
+        {/* Row 1: Data Ingestion + Quality */}
         <g filter="url(#mlopsShadow)">
-          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
-          <text x="16" y="26" className="stageTitle">Data Ingestion</text>
-          <text x="16" y="48" className="stageNote">GPU Telemetry (H100)</text>
-          <text x="16" y="66" className="stageNote">RackTelemetry / Redfish</text>
-          <text x="16" y="84" className="stageNote">Azure Blob Storage</text>
+          <rect className="panel" x="0" y="0" width="280" height="96" rx="14" />
+          <text x="14" y="24" className="title">Data Ingestion</text>
+          <text x="14" y="46" className="note">GPU Telemetry (H100), RackTelemetry</text>
+          <text x="14" y="66" className="note">Redfish Alerts → Azure Blob / Delta Bronze</text>
         </g>
-        <line className="arrow" x1="178" y1="60" x2="228" y2="60" />
-
-        {/* Feature Engineering */}
-        <g transform="translate(230,0)" filter="url(#mlopsShadow)">
-          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
-          <text x="16" y="26" className="stageTitle">Feature Eng.</text>
-          <text x="16" y="48" className="stageNote">Azure Data Factory</text>
-          <text x="16" y="66" className="stageNote">Transforms / Joins</text>
-          <text x="16" y="84" className="stageNote">Delta Lake</text>
+        <line className="arrow" x1="282" y1="48" x2="328" y2="48" />
+        <g transform="translate(330,0)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="220" height="96" rx="14" />
+          <text x="14" y="24" className="title">Data Quality</text>
+          <text x="14" y="46" className="note">Schema checks, dedupe, outlier guards</text>
+          <text x="14" y="66" className="note">Great Expectations / custom rules</text>
         </g>
-        <line className="arrow" x1="408" y1="60" x2="458" y2="60" />
-
-        {/* Training */}
-        <g transform="translate(460,0)" filter="url(#mlopsShadow)">
-          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
-          <text x="16" y="26" className="stageTitle">Training</text>
-          <text x="16" y="48" className="stageNote">Azure ML</text>
-          <text x="16" y="66" className="stageNote">XGBoost / KNN / LR</text>
-          <text x="16" y="84" className="stageNote">MLflow Tracking</text>
+        <line className="arrow" x1="552" y1="48" x2="598" y2="48" />
+        <g transform="translate(600,0)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="240" height="96" rx="14" />
+          <text x="14" y="24" className="title">Feature Engineering</text>
+          <text x="14" y="46" className="note">ADF jobs, joins, windowing</text>
+          <text x="14" y="66" className="note">Delta Silver → Gold</text>
         </g>
-        <line className="arrow" x1="638" y1="60" x2="688" y2="60" />
 
-        {/* Evaluation */}
-        <g transform="translate(690,0)" filter="url(#mlopsShadow)">
-          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
-          <text x="16" y="26" className="stageTitle">Evaluation</text>
-          <text x="16" y="48" className="stageNote">F1 / ROC-AUC</text>
-          <text x="16" y="66" className="stageNote">Brier / MSE</text>
-          <text x="16" y="84" className="stageNote">Feature Importance</text>
+        {/* Row 2: Training + Registry + Policies */}
+        <g transform="translate(0,116)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="260" height="112" rx="14" />
+          <text x="14" y="24" className="title">Model Training</text>
+          <text x="14" y="46" className="note">Azure ML (XGB / KNN / LR / LSTM / RSF)</text>
+          <text x="14" y="66" className="note">Hyperparam tuning & CV</text>
+          <text x="14" y="86" className="note">MLflow tracking & artifacts</text>
         </g>
-        <line className="arrow" x1="868" y1="60" x2="918" y2="60" />
+        <line className="arrow" x1="262" y1="172" x2="308" y2="172" />
+        <g transform="translate(310,116)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="230" height="112" rx="14" />
+          <text x="14" y="24" className="title">Model Registry</text>
+          <text x="14" y="46" className="note">Versioning, lineage, approvals</text>
+          <text x="14" y="66" className="note">Policy gates (AUC/Brier/F1 thresholds)</text>
+          <text x="14" y="86" className="note">Bias/fairness checks</text>
+        </g>
+        <line className="arrow" x1="542" y1="172" x2="588" y2="172" />
+        <g transform="translate(590,116)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="250" height="112" rx="14" />
+          <text x="14" y="24" className="title">Canary & Shadow</text>
+          <text x="14" y="46" className="note">Shadow against prod, canary % traffic</text>
+          <text x="14" y="66" className="note">Auto-rollback on SLO breach</text>
+          <text x="14" y="86" className="note">Explainability hooks</text>
+        </g>
 
-        {/* Deployment */}
-        <g transform="translate(920,0)" filter="url(#mlopsShadow)">
-          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
-          <text x="16" y="26" className="stageTitle">Deployment</text>
-          <text x="16" y="48" className="stageNote">Azure ML Endpoints</text>
-          <text x="16" y="66" className="stageNote">Batch & Online</text>
-          <text x="16" y="84" className="stageNote">Model Registry</text>
+        {/* Row 3: Serving + Monitoring + Retraining Trigger */}
+        <g transform="translate(0,248)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="280" height="100" rx="14" />
+          <text x="14" y="24" className="title">Model Serving</text>
+          <text x="14" y="46" className="note">Azure ML endpoints: real-time & batch</text>
+          <text x="14" y="66" className="note">Feature store alignment</text>
+        </g>
+        <line className="arrow" x1="282" y1="298" x2="328" y2="298" />
+        <g transform="translate(330,248)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="240" height="100" rx="14" />
+          <text x="14" y="24" className="title">Monitoring</text>
+          <text x="14" y="46" className="note">Latency, error rates, OFR risk</text>
+          <text x="14" y="66" className="note">Drift & data freshness</text>
+        </g>
+        <line className="arrow" x1="572" y1="298" x2="618" y2="298" />
+        <g transform="translate(620,248)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="220" height="100" rx="14" />
+          <text x="14" y="24" className="title">Retraining Triggers</text>
+          <text x="14" y="46" className="note">Drift, concept shift, seasonal</text>
+          <text x="14" y="66" className="note">Human-in-the-loop labels</text>
         </g>
       </g>
 
-      {/* Online Evaluation callout */}
-      <g transform="translate(70, 280)" filter="url(#mlopsShadow)">
-        <rect x="0" y="0" width="1020" height="84" rx="12" fill="#0f172a" stroke="#334155" strokeWidth="1.25" />
-        <text x="16" y="28" className="stageTitle">Online Evaluation</text>
-        <text x="16" y="52" className="stageNote">
-          High-volume predictions via MLflow batch when latency isn’t critical; real-time endpoints for immediate feedback and alerting.
-        </text>
+      {/* RIGHT: Datacenter Monitoring inset (fills space) */}
+      <g transform="translate(880, 36)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="300" height="348" rx="16" />
+        <text x="14" y="24" className="title">Datacenter Monitoring</text>
+        <text x="14" y="44" className="note">GPU Health • OFR Queue • SLA Impact</text>
+
+        {/* heatmap */}
+        <g transform="translate(14,60)">
+          <rect className="chip" x="0" y="0" width="272" height="110" rx="10" />
+          {/* 6x4 grid */}
+          {Array.from({ length: 4 }).map((_, r) =>
+            Array.from({ length: 6 }).map((__, c) => {
+              const x = 10 + c * 42;
+              const y = 10 + r * 24;
+              // simple color bands to suggest temperature/health
+              const colors = ["#16a34a", "#22c55e", "#f59e0b", "#ef4444"];
+              const color = colors[(r + c) % colors.length];
+              return <rect key={`cell-${r}-${c}`} x={x} y={y} width="36" height="16" rx="3" fill={color} opacity="0.85" />;
+            })
+          )}
+          <text x="10" y="104" className="note">Cluster Heatmap (node status)</text>
+        </g>
+
+        {/* alerts feed */}
+        <g transform="translate(14,182)">
+          <rect className="chip" x="0" y="0" width="272" height="76" rx="10" />
+          <text x="10" y="20" className="title">Alerts</text>
+          <text x="10" y="40" className="note">• Node A17: PCIe Correctable ↑ (12h)</text>
+          <text x="10" y="58" className="note">• Rack R3: Thermal drift (3h) → Watch</text>
+        </g>
+
+        {/* tiny charts (Prometheus/Grafana-like) */}
+        <g transform="translate(14,268)">
+          <rect className="chip" x="0" y="0" width="272" height="64" rx="10" />
+          {/* sparkline */}
+          <polyline
+            points="8,48 28,36 48,40 68,28 88,34 108,22 128,30 148,18 168,26 188,20 208,14 228,18 248,10 264,14"
+            fill="none"
+            stroke="#38bdf8"
+            strokeWidth="2"
+          />
+          <text x="10" y="18" className="title">OFR Risk Trend</text>
+          <text x="200" y="18" className="note">past 24h</text>
+        </g>
       </g>
     </svg>
   );
@@ -253,7 +312,6 @@ export default function ProjectsSection(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.2 });
   const [expandedProjects, setExpandedProjects] = useState<ExpandedMap>({});
-  // NEW: featured tech toggle
   const [isFeaturedTechExpanded, setIsFeaturedTechExpanded] = useState(false);
 
   const toggleProjectExpansion = (projectIndex: number) => {
@@ -263,13 +321,11 @@ export default function ProjectsSection(): JSX.Element {
     }));
   };
 
-  /**
-   * FEATURED: Microsoft — GPU Failure Prediction 
-   */
+  /** FEATURED: Microsoft — GPU Failure Prediction*/
   const featuredMicrosoft: Project = {
     title: "Microsoft — GPU Failure Prediction",
     description:
-      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. Built an end-to-end MLOps pipeline across telemetry ingestion, feature engineering, model training/tuning, and online evaluation—enabling proactive maintenance and reduced downtime at AI cluster scale.",
+      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. End-to-end MLOps covers ingestion, quality, feature engineering, training, registry, canary/shadow, serving, monitoring, and retraining triggers.",
     technologies: [
       "Azure Blob Storage",
       "Azure Data Factory",
@@ -279,25 +335,25 @@ export default function ProjectsSection(): JSX.Element {
       "MLflow",
       "XGBoost",
       "Pytorch",
-      "TensorFlow",
+      "Tensorflow",
       "Prophet",
       "LSTM",
       "Random Survival Forest (RSF)",
       "Survival Analysis",
-      "PCIe Error Prediction",
+      "Data Quality Checks",
+      "Concept Drift Detection",
+      "Model Registry",
+      "Canary / Shadow Deploy",
+      "Auto Rollback",
       "Batch & Online Inference",
       "AUC / Brier / F1",
       "Document RAG Intelligence System",
     ],
-    // image removed in favor of inline pipeline SVG
     alt: "GPU Failure Prediction at Microsoft",
     badges: ["Featured", "Enterprise ML", "Reliability/SRE"],
   };
 
-  /**
-   * PROJECTS GRID
-   * Spotlight PR Reviewer (Claude + MCP) + the two other projects requested.
-   */
+  /** PROJECTS GRID */
   const projects: Project[] = [
     {
       title:
@@ -463,8 +519,7 @@ export default function ProjectsSection(): JSX.Element {
                     <span className="font-semibold">MLOps Pipeline</span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    RackTelemetry/Redfish → ADF feature engineering → Azure ML
-                    training/tuning → MLflow batch & online inference.
+                    Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining.
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4">
@@ -510,7 +565,7 @@ export default function ProjectsSection(): JSX.Element {
               </div>
             </div>
 
-            {/* RIGHT: MLOps pipeline visual (replaces datacenter photo) */}
+            {/* RIGHT: Broader MLOps with monitoring inset */}
             <div className="relative bg-slate-950">
               <MicrosoftMlopsSVG />
               {/* Badges */}
