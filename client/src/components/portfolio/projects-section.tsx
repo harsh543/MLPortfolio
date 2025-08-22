@@ -425,14 +425,14 @@ function GpuFailureCompactSVG(): JSX.Element {
   );
 }
 
-/* --- UPDATED: desktop/tablet diagram (trimmed and clearer) --- */
+/* --- DESKTOP/TABLET: Theoretical MLOps pipeline (book-style) --- */
 function MicrosoftMlopsFullWidthSVG(): JSX.Element {
   return (
     <svg
       role="img"
-      aria-label="MLOps: Telemetry → Features → TensorFlow Classifier → MLflow Registry/Serving → Monitoring → Retraining"
-      viewBox="0 0 1600 420"
-      className="hidden md:block w-full h-[340px] lg:h-[400px]"
+      aria-label="Theoretical MLOps pipeline: Sources → Ingestion → Lake → Feature Store (offline/online) → Training/Validation (TF) + MLflow Tracking → Registry → CI/CD Gate → Deploy (Batch/Realtime/Canary) → Monitoring → Feedback/Labeling → Retraining"
+      viewBox="0 0 1600 520"
+      className="hidden md:block w-full h-[380px] lg:h-[460px]"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -455,77 +455,136 @@ function MicrosoftMlopsFullWidthSVG(): JSX.Element {
           .t { font:700 13px ui-sans-serif,system-ui; fill:#e5e7eb }
           .n { font:12px ui-sans-serif,system-ui; fill:#cbd5e1 }
           .a { stroke:url(#mlB); stroke-width:3; fill:none; marker-end:url(#ah) }
-          .rail { stroke:#334155; stroke-width:1.25; stroke-dasharray:6 6; opacity:.6 }
+          .rail { stroke:#334155; stroke-width:1.25; stroke-dasharray:6 6; opacity:.5 }
+          .badge { font:10px ui-sans-serif,system-ui; fill:#e5e7eb }
         `}</style>
       </defs>
 
-      <rect x="0" y="0" width="1600" height="420" fill="#0b1220" />
-      <rect x="16" y="16" width="1568" height="388" rx="20" fill="url(#mlA)" opacity=".08" />
+      {/* background */}
+      <rect x="0" y="0" width="1600" height="520" fill="#0b1220" />
+      <rect x="16" y="16" width="1568" height="488" rx="20" fill="url(#mlA)" opacity=".08" />
 
-      {/* Top rail */}
+      {/* top rail (data→deploy) */}
       <line className="rail" x1="80" y1="120" x2="1520" y2="120" />
+      {/* bottom rail (monitor→retrain loop) */}
+      <line className="rail" x1="1440" y1="380" x2="240" y2="380" />
 
-      {/* Ingestion */}
-      <g transform="translate(80, 60)" filter="url(#sh)">
+      {/* 1. Data Sources */}
+      <g transform="translate(80,60)" filter="url(#sh)">
         <rect className="p" width="200" height="120" rx="14" />
-        <text x="12" y="26" className="t">Telemetry</text>
-        <text x="12" y="50" className="n">H100/Rack metrics</text>
-        <text x="12" y="70" className="n">Blob → Delta Bronze</text>
+        <text x="12" y="26" className="t">Data Sources</text>
+        <text x="12" y="50" className="n">Telemetry (H100, Rack)</text>
+        <text x="12" y="70" className="n">Tickets / CMDB / Logs</text>
+        <text x="12" y="90" className="n">Batch + Streaming</text>
       </g>
       <line className="a" x1="280" y1="120" x2="320" y2="120" />
 
-      {/* Features */}
-      <g transform="translate(320, 60)" filter="url(#sh)">
+      {/* 2. Ingestion & Orchestration */}
+      <g transform="translate(320,60)" filter="url(#sh)">
         <rect className="p" width="220" height="120" rx="14" />
-        <text x="12" y="26" className="t">Feature Engineering</text>
-        <text x="12" y="50" className="n">Joins, windows, scaling</text>
-        <text x="12" y="70" className="n">Delta Silver → Gold</text>
+        <text x="12" y="26" className="t">Ingestion & Orchestration</text>
+        <text x="12" y="50" className="n">ADF / Airflow / Spark</text>
+        <text x="12" y="70" className="n">Schema & type checks</text>
+        <text x="12" y="90" className="n">DLT / CDC / Streams</text>
       </g>
       <line className="a" x1="540" y1="120" x2="580" y2="120" />
 
-      {/* TensorFlow Classifier */}
-      <g transform="translate(580, 44)" filter="url(#sh)">
+      {/* 3. Data Lake */}
+      <g transform="translate(580,60)" filter="url(#sh)">
+        <rect className="p" width="220" height="120" rx="14" />
+        <text x="12" y="26" className="t">Data Lake</text>
+        <text x="12" y="50" className="n">Delta Bronze / Silver / Gold</text>
+        <text x="12" y="70" className="n">Quality • Dedup • SLAs</text>
+        <text x="12" y="90" className="n">Lineage/Versioned</text>
+      </g>
+      <line className="a" x1="800" y1="120" x2="840" y2="120" />
+
+      {/* 4. Feature Store (OFFLINE + ONLINE) */}
+      <g transform="translate(840,44)" filter="url(#sh)">
+        <rect className="p" width="250" height="152" rx="14" />
+        <text x="12" y="28" className="t">Feature Store</text>
+        <text x="12" y="52" className="n">Offline: training datasets</text>
+        <text x="12" y="72" className="n">Online: low-latency features</text>
+        <text x="12" y="92" className="n">Point-in-time correctness</text>
+        <text x="12" y="112" className="n">Backfills • TTL • Keys</text>
+      </g>
+      {/* branch to Serving (online) */}
+      <path className="a" d="M1065,196 C 1120,220 1200,200 1260,180" />
+      <text x="1208" y="190" className="badge">online features →</text>
+
+      {/* 5. Training + Validation (TensorFlow) */}
+      <line className="a" x1="1090" y1="120" x2="1130" y2="120" />
+      <g transform="translate(1130,44)" filter="url(#sh)">
         <rect className="p" width="260" height="152" rx="14" />
-        <text x="12" y="28" className="t">Training — TensorFlow</text>
-        <text x="12" y="52" className="n">Classifier: OFR risk</text>
-        <text x="12" y="72" className="n">Target: failure / TTL</text>
-        <text x="12" y="92" className="n">Tracked with MLflow</text>
+        <text x="12" y="28" className="t">Training & Validation — TF</text>
+        <text x="12" y="52" className="n">K-fold / HP Tuning</text>
+        <text x="12" y="72" className="n">Targets: OFR risk, TTL</text>
+        <text x="12" y="92" className="n">MLflow Experiment Tracking</text>
       </g>
-      <line className="a" x1="840" y1="120" x2="880" y2="120" />
+      <line className="a" x1="1390" y1="120" x2="1430" y2="120" />
 
-      {/* MLflow Registry / Serving */}
-      <g transform="translate(880, 60)" filter="url(#sh)">
-        <rect className="p" width="240" height="120" rx="14" />
-        <text x="12" y="26" className="t">MLflow Registry</text>
-        <text x="12" y="50" className="n">Models + lineage</text>
-        <text x="12" y="70" className="n">Promote / rollback</text>
-      </g>
-      <line className="a" x1="1120" y1="120" x2="1160" y2="120" />
-
-      <g transform="translate(1160, 60)" filter="url(#sh)">
+      {/* 6. Model Registry + CI/CD Gate */}
+      <g transform="translate(1430,60)" filter="url(#sh)">
         <rect className="p" width="200" height="120" rx="14" />
-        <text x="12" y="26" className="t">Serving</text>
-        <text x="12" y="50" className="n">Batch + real-time</text>
-        <text x="12" y="70" className="n">Blue/green, HA</text>
+        <text x="12" y="26" className="t">Model Registry</text>
+        <text x="12" y="50" className="n">Versions • Lineage • Stages</text>
+        <text x="12" y="70" className="n">Approval gates • Tests</text>
+        <text x="12" y="90" className="n">Rollback ready</text>
       </g>
-      <line className="a" x1="1360" y1="120" x2="1400" y2="120" />
 
-      {/* Monitoring (bottom) */}
-      <line className="rail" x1="1400" y1="300" x2="200" y2="300" />
-      <g transform="translate(1260, 240)" filter="url(#sh)">
-        <rect className="p" width="220" height="120" rx="14" />
+      {/* Deployments row */}
+      <g transform="translate(1120,260)" filter="url(#sh)">
+        <rect className="p" width="230" height="110" rx="14" />
+        <text x="12" y="26" className="t">Batch Scoring</text>
+        <text x="12" y="50" className="n">Jobs on Delta Gold</text>
+        <text x="12" y="70" className="n">Scheduled / backfills</text>
+      </g>
+      <g transform="translate(1380,260)" filter="url(#sh)">
+        <rect className="p" width="200" height="110" rx="14" />
+        <text x="12" y="26" className="t">Real-time Serving</text>
+        <text x="12" y="50" className="n">REST/gRPC • HA • Blue/Green</text>
+        <text x="12" y="70" className="n">Canary / Shadow</text>
+      </g>
+      {/* arrows from Registry to deploy targets */}
+      <path className="a" d="M1530,180 C 1500,210 1350,230 1235,250" />
+      <path className="a" d="M1590,180 C 1600,210 1580,238 1490,254" />
+
+      {/* 7. Monitoring */}
+      <g transform="translate(900,260)" filter="url(#sh)">
+        <rect className="p" width="200" height="110" rx="14" />
         <text x="12" y="26" className="t">Monitoring</text>
-        <text x="12" y="50" className="n">AUC/Brier/F1 • Drift</text>
-        <text x="12" y="70" className="n">Freshness • SLOs</text>
+        <text x="12" y="50" className="n">Data quality & freshness</text>
+        <text x="12" y="70" className="n">AUC / F1 • Drift alerts</text>
       </g>
-      <line className="a" x1="1260" y1="300" x2="1200" y2="300" />
-      <g transform="translate(980, 240)" filter="url(#sh)">
-        <rect className="p" width="220" height="120" rx="14" />
-        <text x="12" y="26" className="t">Retraining</text>
-        <text x="12" y="50" className="n">Drift/seasonal triggers</text>
-        <text x="12" y="70" className="n">Auto pipelines</text>
+      <path className="a" d="M1380,315 C 1320,315 1260,315 1100,315" />
+      <path className="a" d="M1120,315 C 1080,315 1040,315 1000,315" />
+
+      {/* 8. Feedback & Labeling */}
+      <g transform="translate(660,260)" filter="url(#sh)">
+        <rect className="p" width="220" height="110" rx="14" />
+        <text x="12" y="26" className="t">Feedback & Labeling</text>
+        <text x="12" y="50" className="n">Human-in-the-loop</text>
+        <text x="12" y="70" className="n">Auto-label & review apps</text>
       </g>
-      <path className="a" d="M980,300 C 860,300 860,120 320,120" />
+      <path className="a" d="M900,315 C 860,315 820,315 780,315" />
+
+      {/* 9. Continuous Retraining */}
+      <g transform="translate(420,260)" filter="url(#sh)">
+        <rect className="p" width="220" height="110" rx="14" />
+        <text x="12" y="26" className="t">Continuous Retraining</text>
+        <text x="12" y="50" className="n">Triggers: drift/seasonal</text>
+        <text x="12" y="70" className="n">Pipelines • Model tests</text>
+      </g>
+      <path className="a" d="M660,315 C 620,315 580,315 540,315" />
+      {/* loop back to Feature Store / Training */}
+      <path className="a" d="M420,315 C 360,315 340,200 580,120" />
+      <text x="360" y="300" className="badge">← feedback loop</text>
+
+      {/* Governance banner */}
+      <g transform="translate(80,420)">
+        <rect x="0" y="-26" width="1480" height="24" rx="12" fill="#0f172a" stroke="#334155" />
+        <text x="16" y="-9" className="n">Governance • Lineage • Security • Privacy • Cost / FinOps • Audit</text>
+      </g>
     </svg>
   );
 }
