@@ -426,164 +426,146 @@ function GpuFailureCompactSVG(): JSX.Element {
 }
 
 /* --- DESKTOP/TABLET: Theoretical MLOps pipeline (book-style) --- */
+/* --- DESKTOP/TABLET: Simple Level-0 MLOps pipeline (smooth, book-style) --- */
 function MicrosoftMlopsFullWidthSVG(): JSX.Element {
   return (
     <svg
       role="img"
-      aria-label="Theoretical MLOps pipeline: Sources → Ingestion → Lake → Feature Store (offline/online) → Training/Validation (TF) + MLflow Tracking → Registry → CI/CD Gate → Deploy (Batch/Realtime/Canary) → Monitoring → Feedback/Labeling → Retraining"
-      viewBox="0 0 1600 520"
-      className="hidden md:block w-full h-[380px] lg:h-[460px]"
+      aria-label="MLOps Level 0: Sources → EDA → Data prep → TensorFlow training → Evaluation → Trained model → Storage → Deployment"
+      viewBox="0 0 1600 420"
+      className="hidden md:block w-full h-[320px] lg:h-[380px]"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
-        <linearGradient id="mlA" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#22c55e" />
+          <stop offset="100%" stopColor="#06b6d4" />
+        </linearGradient>
+        <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#0ea5e9" />
-          <stop offset="100%" stopColor="#22c55e" />
+          <stop offset="100%" stopColor="#7c3aed" />
         </linearGradient>
-        <linearGradient id="mlB" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#7c3aed" />
-          <stop offset="100%" stopColor="#1d4ed8" />
-        </linearGradient>
-        <marker id="ah" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 z" fill="url(#mlB)" />
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="url(#line)" />
         </marker>
-        <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="6" stdDeviation="10" floodOpacity="0.25" />
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="6" stdDeviation="10" floodOpacity="0.22" />
         </filter>
         <style>{`
-          .p { fill:#0f172a; stroke:#334155; stroke-width:1.25 }
-          .t { font:700 13px ui-sans-serif,system-ui; fill:#e5e7eb }
-          .n { font:12px ui-sans-serif,system-ui; fill:#cbd5e1 }
-          .a { stroke:url(#mlB); stroke-width:3; fill:none; marker-end:url(#ah) }
-          .rail { stroke:#334155; stroke-width:1.25; stroke-dasharray:6 6; opacity:.5 }
-          .badge { font:10px ui-sans-serif,system-ui; fill:#e5e7eb }
+          .pill { fill:#0f172a; stroke:#334155; stroke-width:1.25 }
+          .title { font:700 13px ui-sans-serif,system-ui; fill:#e5e7eb }
+          .sub   { font:12px ui-sans-serif,system-ui; fill:#cbd5e1 }
+          .group { fill:rgba(15,23,42,.45); stroke:#334155; stroke-width:1; }
+          .rail  { stroke:#334155; stroke-width:1.25; stroke-dasharray:6 6; opacity:.45 }
         `}</style>
       </defs>
 
       {/* background */}
-      <rect x="0" y="0" width="1600" height="520" fill="#0b1220" />
-      <rect x="16" y="16" width="1568" height="488" rx="20" fill="url(#mlA)" opacity=".08" />
+      <rect x="0" y="0" width="1600" height="420" fill="#0b1220" />
+      <rect x="16" y="16" width="1568" height="388" rx="20" fill="url(#glass)" opacity=".08" />
 
-      {/* top rail (data→deploy) */}
-      <line className="rail" x1="80" y1="120" x2="1520" y2="120" />
-      {/* bottom rail (monitor→retrain loop) */}
-      <line className="rail" x1="1440" y1="380" x2="240" y2="380" />
+      {/* one smooth line connecting everything */}
+      <path
+        d="
+          M 120 170
+          C 220 170, 260 170, 320 170
+          S 420 170, 480 170
+          S 580 170, 640 170
+          S 740 170, 800 170
+          S 900 170, 960 170
+          S 1060 170, 1120 170
+          S 1220 170, 1280 170
+          S 1380 170, 1440 170
+        "
+        fill="none"
+        stroke="url(#line)"
+        strokeWidth="3.5"
+        markerEnd="url(#arrow)"
+        opacity=".9"
+      />
 
-      {/* 1. Data Sources */}
-      <g transform="translate(80,60)" filter="url(#sh)">
-        <rect className="p" width="200" height="120" rx="14" />
-        <text x="12" y="26" className="t">Data Sources</text>
-        <text x="12" y="50" className="n">Telemetry (H100, Rack)</text>
-        <text x="12" y="70" className="n">Tickets / CMDB / Logs</text>
-        <text x="12" y="90" className="n">Batch + Streaming</text>
-      </g>
-      <line className="a" x1="280" y1="120" x2="320" y2="120" />
+      {/* Manual experiment steps container (book-style) */}
+      <rect x="300" y="110" width="780" height="120" rx="16" className="group" />
 
-      {/* 2. Ingestion & Orchestration */}
-      <g transform="translate(320,60)" filter="url(#sh)">
-        <rect className="p" width="220" height="120" rx="14" />
-        <text x="12" y="26" className="t">Ingestion & Orchestration</text>
-        <text x="12" y="50" className="n">ADF / Airflow / Spark</text>
-        <text x="12" y="70" className="n">Schema & type checks</text>
-        <text x="12" y="90" className="n">DLT / CDC / Streams</text>
-      </g>
-      <line className="a" x1="540" y1="120" x2="580" y2="120" />
-
-      {/* 3. Data Lake */}
-      <g transform="translate(580,60)" filter="url(#sh)">
-        <rect className="p" width="220" height="120" rx="14" />
-        <text x="12" y="26" className="t">Data Lake</text>
-        <text x="12" y="50" className="n">Delta Bronze / Silver / Gold</text>
-        <text x="12" y="70" className="n">Quality • Dedup • SLAs</text>
-        <text x="12" y="90" className="n">Lineage/Versioned</text>
-      </g>
-      <line className="a" x1="800" y1="120" x2="840" y2="120" />
-
-      {/* 4. Feature Store (OFFLINE + ONLINE) */}
-      <g transform="translate(840,44)" filter="url(#sh)">
-        <rect className="p" width="250" height="152" rx="14" />
-        <text x="12" y="28" className="t">Feature Store</text>
-        <text x="12" y="52" className="n">Offline: training datasets</text>
-        <text x="12" y="72" className="n">Online: low-latency features</text>
-        <text x="12" y="92" className="n">Point-in-time correctness</text>
-        <text x="12" y="112" className="n">Backfills • TTL • Keys</text>
-      </g>
-      {/* branch to Serving (online) */}
-      <path className="a" d="M1065,196 C 1120,220 1200,200 1260,180" />
-      <text x="1208" y="190" className="badge">online features →</text>
-
-      {/* 5. Training + Validation (TensorFlow) */}
-      <line className="a" x1="1090" y1="120" x2="1130" y2="120" />
-      <g transform="translate(1130,44)" filter="url(#sh)">
-        <rect className="p" width="260" height="152" rx="14" />
-        <text x="12" y="28" className="t">Training & Validation — TF</text>
-        <text x="12" y="52" className="n">K-fold / HP Tuning</text>
-        <text x="12" y="72" className="n">Targets: OFR risk, TTL</text>
-        <text x="12" y="92" className="n">MLflow Experiment Tracking</text>
-      </g>
-      <line className="a" x1="1390" y1="120" x2="1430" y2="120" />
-
-      {/* 6. Model Registry + CI/CD Gate */}
-      <g transform="translate(1430,60)" filter="url(#sh)">
-        <rect className="p" width="200" height="120" rx="14" />
-        <text x="12" y="26" className="t">Model Registry</text>
-        <text x="12" y="50" className="n">Versions • Lineage • Stages</text>
-        <text x="12" y="70" className="n">Approval gates • Tests</text>
-        <text x="12" y="90" className="n">Rollback ready</text>
+      {/* 0. Local / Sources */}
+      <g transform="translate(100,120)" filter="url(#soft)">
+        {/* cylinder for local data / sources */}
+        <ellipse cx="70" cy="8" rx="64" ry="10" fill="#0ea5e9" opacity=".25" />
+        <rect x="6" y="8" width="128" height="84" rx="10" fill="#0f172a" stroke="#334155" />
+        <ellipse cx="70" cy="8" rx="64" ry="10" fill="#0ea5e9" />
+        <text x="70" y="48" textAnchor="middle" className="title">Sources</text>
+        <text x="70" y="68" textAnchor="middle" className="sub">Telemetry • Logs</text>
       </g>
 
-      {/* Deployments row */}
-      <g transform="translate(1120,260)" filter="url(#sh)">
-        <rect className="p" width="230" height="110" rx="14" />
-        <text x="12" y="26" className="t">Batch Scoring</text>
-        <text x="12" y="50" className="n">Jobs on Delta Gold</text>
-        <text x="12" y="70" className="n">Scheduled / backfills</text>
+      {/* 1. EDA */}
+      <g transform="translate(300,130)" filter="url(#soft)">
+        <rect className="pill" width="150" height="80" rx="18" />
+        <text x="16" y="40" className="title">EDA</text>
+        <text x="16" y="60" className="sub">Exploration</text>
       </g>
-      <g transform="translate(1380,260)" filter="url(#sh)">
-        <rect className="p" width="200" height="110" rx="14" />
-        <text x="12" y="26" className="t">Real-time Serving</text>
-        <text x="12" y="50" className="n">REST/gRPC • HA • Blue/Green</text>
-        <text x="12" y="70" className="n">Canary / Shadow</text>
-      </g>
-      {/* arrows from Registry to deploy targets */}
-      <path className="a" d="M1530,180 C 1500,210 1350,230 1235,250" />
-      <path className="a" d="M1590,180 C 1600,210 1580,238 1490,254" />
 
-      {/* 7. Monitoring */}
-      <g transform="translate(900,260)" filter="url(#sh)">
-        <rect className="p" width="200" height="110" rx="14" />
-        <text x="12" y="26" className="t">Monitoring</text>
-        <text x="12" y="50" className="n">Data quality & freshness</text>
-        <text x="12" y="70" className="n">AUC / F1 • Drift alerts</text>
+      {/* 2. Data prep */}
+      <g transform="translate(470,130)" filter="url(#soft)">
+        <rect className="pill" width="170" height="80" rx="18" />
+        <text x="16" y="40" className="title">Data preparation</text>
+        <text x="16" y="60" className="sub">Cleaning • Features</text>
       </g>
-      <path className="a" d="M1380,315 C 1320,315 1260,315 1100,315" />
-      <path className="a" d="M1120,315 C 1080,315 1040,315 1000,315" />
 
-      {/* 8. Feedback & Labeling */}
-      <g transform="translate(660,260)" filter="url(#sh)">
-        <rect className="p" width="220" height="110" rx="14" />
-        <text x="12" y="26" className="t">Feedback & Labeling</text>
-        <text x="12" y="50" className="n">Human-in-the-loop</text>
-        <text x="12" y="70" className="n">Auto-label & review apps</text>
+      {/* 3. Training (TensorFlow) */}
+      <g transform="translate(660,120)" filter="url(#soft)">
+        <rect className="pill" width="170" height="100" rx="18" />
+        <text x="16" y="44" className="title">Model training</text>
+        <text x="16" y="64" className="sub">TensorFlow • MLflow</text>
       </g>
-      <path className="a" d="M900,315 C 860,315 820,315 780,315" />
 
-      {/* 9. Continuous Retraining */}
-      <g transform="translate(420,260)" filter="url(#sh)">
-        <rect className="p" width="220" height="110" rx="14" />
-        <text x="12" y="26" className="t">Continuous Retraining</text>
-        <text x="12" y="50" className="n">Triggers: drift/seasonal</text>
-        <text x="12" y="70" className="n">Pipelines • Model tests</text>
+      {/* 4. Evaluation */}
+      <g transform="translate(850,130)" filter="url(#soft)">
+        <rect className="pill" width="160" height="80" rx="18" />
+        <text x="16" y="40" className="title">Model evaluation</text>
+        <text x="16" y="60" className="sub">AUC • F1 • Brier</text>
       </g>
-      <path className="a" d="M660,315 C 620,315 580,315 540,315" />
-      {/* loop back to Feature Store / Training */}
-      <path className="a" d="M420,315 C 360,315 340,200 580,120" />
-      <text x="360" y="300" className="badge">← feedback loop</text>
 
-      {/* Governance banner */}
-      <g transform="translate(80,420)">
-        <rect x="0" y="-26" width="1480" height="24" rx="12" fill="#0f172a" stroke="#334155" />
-        <text x="16" y="-9" className="n">Governance • Lineage • Security • Privacy • Cost / FinOps • Audit</text>
+      {/* 5. Trained model tag */}
+      <g transform="translate(1030,130)" filter="url(#soft)">
+        <rect width="130" height="80" rx="12" fill="#10b981" opacity=".2" />
+        <rect x="2" y="2" width="126" height="76" rx="10" fill="none" stroke="#10b981" />
+        <text x="16" y="46" className="title">Trained model</text>
+      </g>
+
+      {/* 6. Storage cylinder */}
+      <g transform="translate(1180,120)" filter="url(#soft)">
+        <ellipse cx="70" cy="8" rx="64" ry="10" fill="#60a5fa" opacity=".25" />
+        <rect x="6" y="8" width="128" height="84" rx="10" fill="#0f172a" stroke="#334155" />
+        <ellipse cx="70" cy="8" rx="64" ry="10" fill="#60a5fa" />
+        <text x="70" y="46" textAnchor="middle" className="title">Storage</text>
+        <text x="70" y="66" textAnchor="middle" className="sub">Artifacts • Data</text>
+      </g>
+
+      {/* 7. Deployment */}
+      <g transform="translate(1330,130)" filter="url(#soft)">
+        <rect className="pill" width="160" height="80" rx="18" />
+        <text x="16" y="40" className="title">Model deployment</text>
+        <text x="16" y="60" className="sub">Batch • Real-time</text>
+      </g>
+
+      {/* small analysis feedback loop (minimal, smooth) */}
+      <path
+        d="M 930 210 C 930 250, 790 250, 740 210"
+        fill="none"
+        stroke="url(#line)"
+        strokeWidth="2.5"
+        markerEnd="url(#arrow)"
+        opacity=".7"
+      />
+      <g transform="translate(800,250)">
+        <rect width="140" height="44" rx="10" className="pill" />
+        <text x="12" y="28" className="title">Model analysis</text>
+      </g>
+
+      {/* governance strip – keep as requested */}
+      <g transform="translate(80,380)">
+        <rect x="0" y="-20" width="1480" height="18" rx="9" fill="#0f172a" stroke="#334155" />
+        <text x="12" y="-6" className="sub">Governance • Lineage • Security • Privacy • FinOps • Audit</text>
       </g>
     </svg>
   );
