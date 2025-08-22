@@ -281,7 +281,7 @@ export default function ProjectsSection(): JSX.Element {
   const featuredMicrosoft: Project = {
     title: "Microsoft — GPU Failure Prediction",
     description:
-      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. End-to-end MLOps: Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining.",
+      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis.",
     technologies: [
       "Azure Blob Storage",
       "Azure Data Factory",
@@ -428,7 +428,7 @@ export default function ProjectsSection(): JSX.Element {
             Featured Project
           </h2>
           <p className="text-lg text-text-secondary max-w-5xl mx-auto">
-            <span className="font-semibold">MLOps Pipeline</span> — Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining
+            <span className="font-semibold">End-to-end MLOps Pipeline</span> — Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining
           </p>
         </div>
 
