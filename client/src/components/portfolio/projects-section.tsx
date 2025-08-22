@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import {
+  Sparkles,
+  Activity,
+  ServerCog,
+  FileText,
   ExternalLink,
   Github,
   Play,
   ChevronDown,
   ChevronUp,
-  Sparkles,
-  Activity,
-  ServerCog,
-  FileText,
 } from "lucide-react";
 
 /** Inline, brand-safe architecture art for the PR Reviewer project */
@@ -47,44 +47,25 @@ function McpPrReviewSVG(): JSX.Element {
         </style>
       </defs>
 
-      {/* background glow */}
+      {/* background */}
       <rect x="0" y="0" width="1200" height="420" fill="#0b1220" />
       <rect x="40" y="24" width="1120" height="372" rx="16" fill="#0f172a" />
-      <rect
-        x="40"
-        y="24"
-        width="1120"
-        height="372"
-        rx="16"
-        fill="url(#gradA)"
-        opacity="0.08"
-      />
+      <rect x="40" y="24" width="1120" height="372" rx="16" fill="url(#gradA)" opacity="0.08" />
 
       {/* wires */}
-      <path
-        className="wire"
-        d="M230 210 C 360 210, 480 140, 600 140 C 720 140, 840 210, 970 210"
-        filter="url(#softShadow)"
-      />
-      <path
-        className="wire pulse"
-        d="M230 240 C 360 240, 480 300, 600 300 C 720 300, 840 240, 970 240"
-      />
+      <path className="wire" d="M230 210 C 360 210, 480 140, 600 140 C 720 140, 840 210, 970 210" filter="url(#softShadow)" />
+      <path className="wire pulse" d="M230 240 C 360 240, 480 300, 600 300 C 720 300, 840 240, 970 240" />
 
-      {/* Claude node */}
+      {/* Claude */}
       <g transform="translate(140,190)">
         <rect className="node" width="180" height="80" rx="14" />
         <circle cx="44" cy="40" r="18" fill="url(#gradA)" />
-        <path
-          d="M37 40a7 7 0 0014 0a7 7 0 00-14 0Z"
-          fill="#fff"
-          opacity=".85"
-        />
+        <path d="M37 40a7 7 0 0014 0a7 7 0 00-14 0Z" fill="#fff" opacity=".85" />
         <text x="78" y="36" className="label">Claude</text>
         <text x="78" y="56" className="sublabel">AI Reviewer</text>
       </g>
 
-      {/* MCP Server (this repo) */}
+      {/* MCP */}
       <g transform="translate(510,110)">
         <rect className="chip" width="180" height="200" rx="14" />
         <rect x="20" y="24" width="140" height="28" rx="6" fill="#1e293b" />
@@ -123,7 +104,6 @@ function McpPrReviewSVG(): JSX.Element {
         <text x="62" y="66" className="sublabel">Repos / Jobs</text>
       </g>
 
-      {/* captions */}
       <text x="160" y="360" className="sublabel" fill="#9ca3af">
         Claude → MCP → GitHub/Databricks/Notion • Automated PR analysis • Policy-aware comments • Optional Notion logging
       </text>
@@ -131,14 +111,14 @@ function McpPrReviewSVG(): JSX.Element {
   );
 }
 
-/** Broader, denser Microsoft MLOps pipeline + Datacenter Monitoring inset */
-function MicrosoftMlopsSVG(): JSX.Element {
+/** Full-width Microsoft MLOps pipeline + Datacenter Monitoring inset */
+function MicrosoftMlopsFullWidthSVG(): JSX.Element {
   return (
     <svg
       role="img"
       aria-label="MLOps pipeline and Datacenter Monitoring for GPU failure prediction"
-      viewBox="0 0 1200 420"
-      className="w-full h-full"
+      viewBox="0 0 1400 560"
+      className="w-full h-[420px] md:h-[480px] lg:h-[520px] xl:h-[560px]"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -167,107 +147,114 @@ function MicrosoftMlopsSVG(): JSX.Element {
         </style>
       </defs>
 
-      {/* background */}
-      <rect x="0" y="0" width="1200" height="420" fill="#0b1220" />
-      <rect x="20" y="20" width="1160" height="380" rx="18" fill="#0b1220" />
-      <rect x="20" y="20" width="1160" height="380" rx="18" fill="url(#mlopsA)" opacity="0.08" />
+      <rect x="0" y="0" width="1400" height="560" fill="#0b1220" />
+      <rect x="20" y="20" width="1360" height="520" rx="20" fill="#0b1220" />
+      <rect x="20" y="20" width="1360" height="520" rx="20" fill="url(#mlopsA)" opacity="0.08" />
 
-      {/* LEFT: Expanded MLOps pipeline (wider and denser) */}
-      <g transform="translate(36, 52)">
-        {/* Row 1: Data Ingestion + Quality */}
+      {/* LEFT 70%: Expanded MLOps pipeline (3 rows) */}
+      <g transform="translate(36, 56)">
+        {/* Row 1 */}
         <g filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="280" height="96" rx="14" />
-          <text x="14" y="24" className="title">Data Ingestion</text>
-          <text x="14" y="46" className="note">GPU Telemetry (H100), RackTelemetry</text>
-          <text x="14" y="66" className="note">Redfish Alerts → Azure Blob / Delta Bronze</text>
+          <rect className="panel" x="0" y="0" width="300" height="110" rx="14" />
+          <text x="16" y="28" className="title">Data Ingestion</text>
+          <text x="16" y="52" className="note">GPU Telemetry (H100), RackTelemetry</text>
+          <text x="16" y="74" className="note">Redfish Alerts → Azure Blob / Delta Bronze</text>
         </g>
-        <line className="arrow" x1="282" y1="48" x2="328" y2="48" />
-        <g transform="translate(330,0)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="220" height="96" rx="14" />
-          <text x="14" y="24" className="title">Data Quality</text>
-          <text x="14" y="46" className="note">Schema checks, dedupe, outlier guards</text>
-          <text x="14" y="66" className="note">Great Expectations / custom rules</text>
+        <line className="arrow" x1="302" y1="56" x2="352" y2="56" />
+        <g transform="translate(354,0)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="260" height="110" rx="14" />
+          <text x="16" y="28" className="title">Data Quality</text>
+          <text x="16" y="52" className="note">Schema checks, dedupe, outlier guards</text>
+          <text x="16" y="74" className="note">Great Expectations / custom rules</text>
         </g>
-        <line className="arrow" x1="552" y1="48" x2="598" y2="48" />
-        <g transform="translate(600,0)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="240" height="96" rx="14" />
-          <text x="14" y="24" className="title">Feature Engineering</text>
-          <text x="14" y="46" className="note">ADF jobs, joins, windowing</text>
-          <text x="14" y="66" className="note">Delta Silver → Gold</text>
+        <line className="arrow" x1="616" y1="56" x2="666" y2="56" />
+        <g transform="translate(668,0)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="280" height="110" rx="14" />
+          <text x="16" y="28" className="title">Feature Engineering</text>
+          <text x="16" y="52" className="note">ADF jobs, joins, windowing, imputations</text>
+          <text x="16" y="74" className="note">Delta Silver → Gold</text>
         </g>
-
-        {/* Row 2: Training + Registry + Policies */}
-        <g transform="translate(0,116)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="260" height="112" rx="14" />
-          <text x="14" y="24" className="title">Model Training</text>
-          <text x="14" y="46" className="note">Azure ML (XGB / KNN / LR / LSTM / RSF)</text>
-          <text x="14" y="66" className="note">Hyperparam tuning & CV</text>
-          <text x="14" y="86" className="note">MLflow tracking & artifacts</text>
-        </g>
-        <line className="arrow" x1="262" y1="172" x2="308" y2="172" />
-        <g transform="translate(310,116)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="230" height="112" rx="14" />
-          <text x="14" y="24" className="title">Model Registry</text>
-          <text x="14" y="46" className="note">Versioning, lineage, approvals</text>
-          <text x="14" y="66" className="note">Policy gates (AUC/Brier/F1 thresholds)</text>
-          <text x="14" y="86" className="note">Bias/fairness checks</text>
-        </g>
-        <line className="arrow" x1="542" y1="172" x2="588" y2="172" />
-        <g transform="translate(590,116)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="250" height="112" rx="14" />
-          <text x="14" y="24" className="title">Canary & Shadow</text>
-          <text x="14" y="46" className="note">Shadow against prod, canary % traffic</text>
-          <text x="14" y="66" className="note">Auto-rollback on SLO breach</text>
-          <text x="14" y="86" className="note">Explainability hooks</text>
+        <line className="arrow" x1="950" y1="56" x2="1000" y2="56" />
+        <g transform="translate(1002,0)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="280" height="110" rx="14" />
+          <text x="16" y="28" className="title">Feature Store</text>
+          <text x="16" y="52" className="note">Consistency between train/serve</text>
+          <text x="16" y="74" className="note">Point-in-time joins</text>
         </g>
 
-        {/* Row 3: Serving + Monitoring + Retraining Trigger */}
-        <g transform="translate(0,248)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="280" height="100" rx="14" />
-          <text x="14" y="24" className="title">Model Serving</text>
-          <text x="14" y="46" className="note">Azure ML endpoints: real-time & batch</text>
-          <text x="14" y="66" className="note">Feature store alignment</text>
+        {/* Row 2 */}
+        <g transform="translate(0,132)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="330" height="120" rx="14" />
+          <text x="16" y="28" className="title">Model Training</text>
+          <text x="16" y="52" className="note">Azure ML (XGB / KNN / LR / LSTM / RSF)</text>
+          <text x="16" y="74" className="note">Hyperparam tuning & CV</text>
+          <text x="16" y="96" className="note">MLflow tracking & artifacts</text>
         </g>
-        <line className="arrow" x1="282" y1="298" x2="328" y2="298" />
-        <g transform="translate(330,248)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="240" height="100" rx="14" />
-          <text x="14" y="24" className="title">Monitoring</text>
-          <text x="14" y="46" className="note">Latency, error rates, OFR risk</text>
-          <text x="14" y="66" className="note">Drift & data freshness</text>
+        <line className="arrow" x1="332" y1="192" x2="382" y2="192" />
+        <g transform="translate(384,132)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="320" height="120" rx="14" />
+          <text x="16" y="28" className="title">Model Registry</text>
+          <text x="16" y="52" className="note">Versioning, lineage, approvals</text>
+          <text x="16" y="74" className="note">Policy gates (AUC/Brier/F1)</text>
+          <text x="16" y="96" className="note">Bias / fairness checks</text>
         </g>
-        <line className="arrow" x1="572" y1="298" x2="618" y2="298" />
-        <g transform="translate(620,248)" filter="url(#mlopsShadow)">
-          <rect className="panel" x="0" y="0" width="220" height="100" rx="14" />
-          <text x="14" y="24" className="title">Retraining Triggers</text>
-          <text x="14" y="46" className="note">Drift, concept shift, seasonal</text>
-          <text x="14" y="66" className="note">Human-in-the-loop labels</text>
+        <line className="arrow" x1="706" y1="192" x2="756" y2="192" />
+        <g transform="translate(758,132)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="320" height="120" rx="14" />
+          <text x="16" y="28" className="title">Canary & Shadow</text>
+          <text x="16" y="52" className="note">Shadow vs prod, canary % traffic</text>
+          <text x="16" y="74" className="note">Auto-rollback on SLO breach</text>
+          <text x="16" y="96" className="note">Explainability hooks</text>
+        </g>
+
+        {/* Row 3 */}
+        <g transform="translate(0,272)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="320" height="116" rx="14" />
+          <text x="16" y="28" className="title">Model Serving</text>
+          <text x="16" y="52" className="note">Azure ML endpoints: real-time & batch</text>
+          <text x="16" y="74" className="note">Blue/green, HA</text>
+          <text x="16" y="96" className="note">Cost-aware routing</text>
+        </g>
+        <line className="arrow" x1="322" y1="330" x2="372" y2="330" />
+        <g transform="translate(374,272)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="320" height="116" rx="14" />
+          <text x="16" y="28" className="title">Monitoring</text>
+          <text x="16" y="52" className="note">Latency, error, throughput, OFR risk</text>
+          <text x="16" y="74" className="note">Data / concept drift, freshness</text>
+          <text x="16" y="96" className="note">SLA/SLO tracking</text>
+        </g>
+        <line className="arrow" x1="696" y1="330" x2="746" y2="330" />
+        <g transform="translate(748,272)" filter="url(#mlopsShadow)">
+          <rect className="panel" x="0" y="0" width="320" height="116" rx="14" />
+          <text x="16" y="28" className="title">Retraining Triggers</text>
+          <text x="16" y="52" className="note">Drift, seasonal, OFR surge</text>
+          <text x="16" y="74" className="note">Human-in-the-loop labels</text>
+          <text x="16" y="96" className="note">Auto-pipeline kickoff</text>
         </g>
       </g>
 
-      {/* RIGHT: Datacenter Monitoring inset (fills space) */}
-      <g transform="translate(880, 36)" filter="url(#mlopsShadow)">
-        <rect className="panel" x="0" y="0" width="300" height="348" rx="16" />
+      {/* RIGHT inset: Datacenter Monitoring */}
+      <g transform="translate(1060, 56)" filter="url(#mlopsShadow)">
+        <rect className="panel" x="0" y="0" width="300" height="332" rx="16" />
         <text x="14" y="24" className="title">Datacenter Monitoring</text>
         <text x="14" y="44" className="note">GPU Health • OFR Queue • SLA Impact</text>
 
         {/* heatmap */}
         <g transform="translate(14,60)">
           <rect className="chip" x="0" y="0" width="272" height="110" rx="10" />
-          {/* 6x4 grid */}
           {Array.from({ length: 4 }).map((_, r) =>
             Array.from({ length: 6 }).map((__, c) => {
               const x = 10 + c * 42;
               const y = 10 + r * 24;
-              // simple color bands to suggest temperature/health
               const colors = ["#16a34a", "#22c55e", "#f59e0b", "#ef4444"];
               const color = colors[(r + c) % colors.length];
               return <rect key={`cell-${r}-${c}`} x={x} y={y} width="36" height="16" rx="3" fill={color} opacity="0.85" />;
             })
           )}
-          <text x="10" y="104" className="note">Cluster Heatmap (node status)</text>
+          <text x="10" y="104" className="note">Cluster Heatmap</text>
         </g>
 
-        {/* alerts feed */}
+        {/* alerts */}
         <g transform="translate(14,182)">
           <rect className="chip" x="0" y="0" width="272" height="76" rx="10" />
           <text x="10" y="20" className="title">Alerts</text>
@@ -275,10 +262,9 @@ function MicrosoftMlopsSVG(): JSX.Element {
           <text x="10" y="58" className="note">• Rack R3: Thermal drift (3h) → Watch</text>
         </g>
 
-        {/* tiny charts (Prometheus/Grafana-like) */}
+        {/* tiny chart */}
         <g transform="translate(14,268)">
           <rect className="chip" x="0" y="0" width="272" height="64" rx="10" />
-          {/* sparkline */}
           <polyline
             points="8,48 28,36 48,40 68,28 88,34 108,22 128,30 148,18 168,26 188,20 208,14 228,18 248,10 264,14"
             fill="none"
@@ -289,6 +275,12 @@ function MicrosoftMlopsSVG(): JSX.Element {
           <text x="200" y="18" className="note">past 24h</text>
         </g>
       </g>
+
+      {/* badge */}
+      <g>
+        <rect x="1220" y="24" rx="12" ry="12" width="160" height="28" fill="#10b981" />
+        <text x="1240" y="43" className="title">GPU Failure Prediction</text>
+      </g>
     </svg>
   );
 }
@@ -297,7 +289,6 @@ type Project = {
   title: string;
   description: string;
   technologies: string[];
-  /** EITHER provide an image URL or an inline SVG via `svg` */
   image?: string;
   svg?: JSX.Element;
   alt: string;
@@ -311,15 +302,9 @@ type ExpandedMap = Record<number, boolean>;
 export default function ProjectsSection(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.2 });
-  const [expandedProjects, setExpandedProjects] = useState<ExpandedMap>({});
   const [isFeaturedTechExpanded, setIsFeaturedTechExpanded] = useState(false);
-
-  const toggleProjectExpansion = (projectIndex: number) => {
-    setExpandedProjects((prev) => ({
-      ...prev,
-      [projectIndex]: !prev[projectIndex],
-    }));
-  };
+  const [expandedProjects, setExpandedProjects] = useState<ExpandedMap>({});
+  const [showMore, setShowMore] = useState(false);
 
   /** FEATURED: Microsoft — GPU Failure Prediction*/
   const featuredMicrosoft: Project = {
@@ -334,10 +319,8 @@ export default function ProjectsSection(): JSX.Element {
       "Azure Machine Learning",
       "MLflow",
       "XGBoost",
-      "Pytorch",
       "Tensorflow",
-      "Prophet",
-      "LSTM",
+      "Pytorch",
       "Random Survival Forest (RSF)",
       "Survival Analysis",
       "Data Quality Checks",
@@ -353,13 +336,13 @@ export default function ProjectsSection(): JSX.Element {
     badges: ["Featured", "Enterprise ML", "Reliability/SRE"],
   };
 
-  /** PROJECTS GRID */
+  /** SECONDARY PROJECTS (hidden behind accordion) */
   const projects: Project[] = [
     {
       title:
         "PR Reviewer — Claude-Powered GitHub Review (MCP + Databricks + Notion)",
       description:
-        "A Model Context Protocol (MCP) server that connects Claude to Databricks repos and Notion knowledge. It auto-summarizes PRs, reasons over diffs, cross-references engineering standards, and proposes actionable review comments.",
+        "MCP server that connects Claude to Databricks repos and Notion knowledge. Auto-summarizes PRs, reasons over diffs, cross-references engineering standards, and proposes actionable comments.",
       technologies: [
         "Model Context Protocol (MCP)",
         "Claude (Anthropic)",
@@ -400,7 +383,7 @@ export default function ProjectsSection(): JSX.Element {
     {
       title: "AI-Powered Hotel Discovery Engine",
       description:
-        "Context-aware travel recommender built with Azure AI Search + RAG to surface hotels by cleanliness, location, and service quality—not just price and ratings.",
+        "Context-aware travel recommender built with Azure AI Search + RAG to surface hotels by cleanliness, location, and service quality — not just price and ratings.",
       technologies: [
         "Azure AI Search",
         "Azure OpenAI Service",
@@ -419,6 +402,10 @@ export default function ProjectsSection(): JSX.Element {
       badges: ["RAG", "Live Demo"],
     },
   ];
+
+  const toggleProjectExpansion = (projectIndex: number) => {
+    setExpandedProjects((prev) => ({ ...prev, [projectIndex]: !prev[projectIndex] }));
+  };
 
   const renderTechnologies = (technologies: string[], projectIndex: number) => {
     const isExpanded = !!expandedProjects[projectIndex];
@@ -463,273 +450,246 @@ export default function ProjectsSection(): JSX.Element {
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 bg-bg-section">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-[1400px] px-6 mx-auto">
         {/* Header */}
-        <div
-          className={`text-center mb-16 animate-on-scroll ${
-            isVisible ? "animate" : ""
-          }`}
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-4">
-            Featured Projects
+        <div className={`text-center mb-10 animate-on-scroll ${isVisible ? "animate" : ""}`}>
+          <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-3">
+            Featured Project
           </h2>
-          <p className="text-lg text-text-secondary max-w-3xl mx-auto">
-            Production ML, reliability engineering, and developer tooling that
-            shorten the path from insight → action.
+          <p className="text-lg text-text-secondary max-w-4xl mx-auto">
+            <span className="font-semibold">MLOps Pipeline</span> — Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining
           </p>
         </div>
 
-        {/* Featured Microsoft Card */}
+        {/* Featured: full-width */}
         <div
-          className={`mb-12 rounded-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white shadow-xl overflow-hidden animate-on-scroll ${
-            isVisible ? "animate" : ""
-          }`}
+          className={`rounded-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white shadow-xl overflow-hidden animate-on-scroll ${isVisible ? "animate" : ""}`}
           style={{ animationDelay: "0s" }}
         >
-          <div className="grid md:grid-cols-2">
-            {/* LEFT: copy + chips */}
-            <div className="p-8 lg:p-10">
-              <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-5 h-5" />
-                <span className="text-xs font-semibold px-2 py-0.5 bg-white/10 rounded-full tracking-wide">
-                  Featured
-                </span>
+          {/* Top copy */}
+          <div className="p-8 lg:p-10">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="w-5 h-5" />
+              <span className="text-xs font-semibold px-2 py-0.5 bg-white/10 rounded-full tracking-wide">
+                Featured
+              </span>
+            </div>
+            <h3 className="text-2xl lg:text-3xl font-bold mb-3">
+              {featuredMicrosoft.title}
+            </h3>
+            <p className="text-white/90 leading-relaxed mb-6">
+              {featuredMicrosoft.description}
+            </p>
+
+            {/* Info tiles */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div className="bg-white/5 rounded-xl p-4">
+                <div className="flex items-center gap-2 text-sm mb-1">
+                  <Activity className="w-4 h-4" />
+                  <span className="font-semibold">Use Case</span>
+                </div>
+                <p className="text-white/80 text-sm">
+                  Predict H100 OFR risk & time-to-failure from telemetry to prevent downtime and reduce repair costs.
+                </p>
               </div>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-3">
-                {featuredMicrosoft.title}
-              </h3>
-              <p className="text-white/90 leading-relaxed mb-6">
-                {featuredMicrosoft.description}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-sm mb-1">
-                    <Activity className="w-4 h-4" />
-                    <span className="font-semibold">Use Case</span>
-                  </div>
-                  <p className="text-white/80 text-sm">
-                    Predict H100 OFR risk & time-to-failure from telemetry to
-                    prevent downtime and reduce repair costs.
-                  </p>
+              <div className="bg-white/5 rounded-xl p-4">
+                <div className="flex items-center gap-2 text-sm mb-1">
+                  <ServerCog className="w-4 h-4" />
+                  <span className="font-semibold">MLOps Pipeline</span>
                 </div>
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-sm mb-1">
-                    <ServerCog className="w-4 h-4" />
-                    <span className="font-semibold">MLOps Pipeline</span>
-                  </div>
-                  <p className="text-white/80 text-sm">
-                    Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining.
-                  </p>
-                </div>
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="flex items-center gap-2 text-sm mb-1">
-                    <FileText className="w-4 h-4" />
-                    <span className="font-semibold">Ops Knowledge (Optional)</span>
-                  </div>
-                  <p className="text-white/80 text-sm">
-                    Team docs & vendor specs (SharePoint, OneNote, DOCX/PPT) surfaced via Document RAG when needed.
-                  </p>
-                </div>
+                <p className="text-white/80 text-sm">
+                  Ingestion → Quality → FE → Training → Registry → Canary/Shadow → Serving → Monitoring → Retraining.
+                </p>
               </div>
-
-              {/* Tech tags with expandable "+N more" */}
-              <div className="flex flex-wrap items-center gap-2">
-                {(isFeaturedTechExpanded
-                  ? featuredMicrosoft.technologies
-                  : featuredMicrosoft.technologies.slice(0, 12)
-                ).map((t, i) => (
-                  <span
-                    key={`ft-${i}-${t}`}
-                    className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
-                  >
-                    {t}
-                  </span>
-                ))}
-
-                {featuredMicrosoft.technologies.length > 12 && (
-                  <button
-                    type="button"
-                    onClick={() => setIsFeaturedTechExpanded((v) => !v)}
-                    aria-expanded={isFeaturedTechExpanded}
-                    className="text-xs px-3 py-1 rounded-full font-semibold
-                               bg-blue-500/90 hover:bg-blue-500 focus:outline-none
-                               focus:ring-2 focus:ring-offset-2 focus:ring-blue-300
-                               text-white transition-all"
-                  >
-                    {isFeaturedTechExpanded
-                      ? "Show less"
-                      : `+${featuredMicrosoft.technologies.length - 12} more`}
-                  </button>
-                )}
+              <div className="bg-white/5 rounded-xl p-4">
+                <div className="flex items-center gap-2 text-sm mb-1">
+                  <FileText className="w-4 h-4" />
+                  <span className="font-semibold">Ops Knowledge (Optional)</span>
+                </div>
+                <p className="text-white/80 text-sm">
+                  Team docs & vendor specs (SharePoint, OneNote, DOCX/PPT) surfaced via Document RAG when needed.
+                </p>
               </div>
             </div>
 
-            {/* RIGHT: Broader MLOps with monitoring inset */}
-            <div className="relative bg-slate-950">
-              <MicrosoftMlopsSVG />
-              {/* Badges */}
-              <div className="absolute top-4 right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
-                GPU Failure Prediction
-              </div>
-              <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur px-3 py-1.5 rounded-full text-xs">
-                Ops docs via <span className="font-semibold">Document RAG</span>
-              </div>
+            {/* Featured tech chips (+N more toggle) */}
+            <div className="flex flex-wrap items-center gap-2">
+              {(isFeaturedTechExpanded
+                ? featuredMicrosoft.technologies
+                : featuredMicrosoft.technologies.slice(0, 12)
+              ).map((t, i) => (
+                <span
+                  key={`ft-${i}-${t}`}
+                  className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
+                >
+                  {t}
+                </span>
+              ))}
+              {featuredMicrosoft.technologies.length > 12 && (
+                <button
+                  type="button"
+                  onClick={() => setIsFeaturedTechExpanded((v) => !v)}
+                  aria-expanded={isFeaturedTechExpanded}
+                  className="text-xs px-3 py-1 rounded-full font-semibold
+                             bg-blue-500/90 hover:bg-blue-500 focus:outline-none
+                             focus:ring-2 focus:ring-offset-2 focus:ring-blue-300
+                             text-white transition-all"
+                >
+                  {isFeaturedTechExpanded
+                    ? "Show less"
+                    : `+${featuredMicrosoft.technologies.length - 12} more`}
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Full-width visual */}
+          <div className="relative bg-slate-950">
+            <MicrosoftMlopsFullWidthSVG />
+            <div className="absolute top-4 right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
+              GPU Failure Prediction
+            </div>
+            <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur px-3 py-1.5 rounded-full text-xs">
+              Ops docs via <span className="font-semibold">Document RAG</span>
             </div>
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`project-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 animate-on-scroll ${
-                isVisible ? "animate" : ""
-              }`}
-              style={{ animationDelay: `${index * 0.15 + 0.05}s` }}
-            >
-              <div className="relative overflow-hidden bg-slate-950">
-                {project.svg ? (
-                  <div className="w-full" aria-label={project.alt} role="img">
-                    {project.svg}
+        {/* Accordion: More Projects */}
+        <div className="mt-10">
+          <button
+            type="button"
+            onClick={() => setShowMore((v) => !v)}
+            aria-expanded={showMore}
+            aria-controls="more-projects"
+            className="mx-auto flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-gray-900 shadow hover:shadow-md transition
+                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
+          >
+            {showMore ? (
+              <>
+                <ChevronUp className="w-4 h-4" />
+                Hide More Projects
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-4 h-4" />
+                Show More Projects
+              </>
+            )}
+          </button>
+
+          {/* Collapsible region */}
+          <div
+            id="more-projects"
+            className={`transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden ${
+              showMore ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="pt-8 grid lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <div
+                  key={project.title}
+                  className="project-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+                >
+                  <div className="relative overflow-hidden bg-slate-950">
+                    {project.svg ? (
+                      <div className="w-full" aria-label={project.alt} role="img">
+                        {project.svg}
+                      </div>
+                    ) : (
+                      <img
+                        src={project.image!}
+                        alt={project.alt}
+                        className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                      />
+                    )}
+                    {!!project.badges?.length && (
+                      <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
+                        {project.badges.map((b) => (
+                          <span
+                            key={b}
+                            className="bg-black/70 backdrop-blur text-white px-2 py-1 rounded-full text-xs font-medium"
+                          >
+                            {b}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {project.demo && (
+                      <div className="absolute top-4 right-4">
+                        <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                          <Play className="w-3 h-3" />
+                          Live Demo
+                        </div>
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <img
-                    src={project.image!}
-                    alt={project.alt}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
-                  />
-                )}
-                {!!project.badges?.length && (
-                  <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
-                    {project.badges.map((b) => (
-                      <span
-                        key={b}
-                        className="bg-black/70 backdrop-blur text-white px-2 py-1 rounded-full text-xs font-medium"
-                      >
-                        {b}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {project.demo && (
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                      <Play className="w-3 h-3" />
-                      Live Demo
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-text-primary mb-3">
+                      {project.title}
+                    </h3>
+                    <p className="text-text-secondary mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Tech tags */}
+                    {renderTechnologies(project.technologies, index)}
+
+                    <div className="flex gap-3">
+                      {project.demo ? (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-center font-medium hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center justify-center gap-2"
+                          aria-label="Open Live Demo"
+                        >
+                          <Play className="w-4 h-4" />
+                          Live Demo
+                        </a>
+                      ) : (
+                        <a
+                          href={project.github || "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-primary-blue text-white px-4 py-2 rounded-lg text-center font-medium hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
+                          aria-label="Learn more"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Learn More
+                        </a>
+                      )}
+
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center gap-2"
+                          aria-label="Open GitHub repository"
+                        >
+                          <Github className="w-4 h-4" />
+                          GitHub
+                        </a>
+                      )}
                     </div>
                   </div>
-                )}
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-text-primary mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-text-secondary mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tech tags */}
-                {renderTechnologies(project.technologies, index)}
-
-                <div className="flex gap-3">
-                  {project.demo ? (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-center font-medium hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center justify-center gap-2"
-                      aria-label="Open Live Demo"
-                    >
-                      <Play className="w-4 h-4" />
-                      Live Demo
-                    </a>
-                  ) : (
-                    <button
-                      className="flex-1 bg-primary-blue text-white px-4 py-2 rounded-lg text-center font-medium hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
-                      aria-label="Learn more"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Learn More
-                    </button>
-                  )}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center gap-2"
-                      aria-label="Open GitHub repository"
-                    >
-                      <Github className="w-4 h-4" />
-                      GitHub
-                    </a>
-                  )}
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Capability Highlights */}
-        <div
-          className={`mt-16 text-center animate-on-scroll ${
-            isVisible ? "animate" : ""
-          }`}
-        >
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Key Capabilities
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <h4 className="font-semibold text-blue-600 mb-2">
-                  🤖 Agentic AI + RAG
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Team docs & vendor specs (SharePoint, OneNote, DOCX/PPT) can be grounded via Document RAG when needed.
-                </p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <h4 className="font-semibold text-purple-600 mb-2">
-                  🔧 Developer Productivity
-                </h4>
-                <p className="text-sm text-gray-600">
-                  MCP-driven code reviews with diff-aware reasoning, policy
-                  checks, and CI/CD guardrails reduce review latency and defects.
-                </p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <h4 className="font-semibold text-green-600 mb-2">
-                  📈 Reliability at Scale
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Telemetry-first modeling (classification + survival analysis)
-                  enables proactive maintenance and protects customer workloads.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
+
       </div>
 
       <style jsx>{`
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-10px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
       `}</style>
     </section>
   );
