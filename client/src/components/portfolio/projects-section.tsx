@@ -131,6 +131,109 @@ function McpPrReviewSVG(): JSX.Element {
   );
 }
 
+/** Inline, brand-safe MLOps pipeline art for the Microsoft featured project */
+function MicrosoftMlopsSVG(): JSX.Element {
+  return (
+    <svg
+      role="img"
+      aria-label="MLOps pipeline: Data Ingestion → Feature Engineering → Training → Evaluation → Deployment → Online Evaluation"
+      viewBox="0 0 1200 420"
+      className="w-full h-full"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        <linearGradient id="mlopsA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#0ea5e9" />
+          <stop offset="100%" stopColor="#22c55e" />
+        </linearGradient>
+        <linearGradient id="mlopsB" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#7c3aed" />
+          <stop offset="100%" stopColor="#1d4ed8" />
+        </linearGradient>
+        <filter id="mlopsShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="6" stdDeviation="10" floodOpacity="0.25" />
+        </filter>
+        <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="url(#mlopsB)" />
+        </marker>
+        <style>
+          {`
+            .stage { fill: #0f172a; stroke: #334155; stroke-width: 1.25; }
+            .stageTitle { font: 600 13px ui-sans-serif, system-ui; fill: #e5e7eb; }
+            .stageNote { font: 12px ui-sans-serif, system-ui; fill: #cbd5e1; }
+            .arrow { stroke: url(#mlopsB); stroke-width: 3; marker-end: url(#arrowHead); }
+          `}
+        </style>
+      </defs>
+
+      <rect x="0" y="0" width="1200" height="420" fill="#0b1220" />
+      <rect x="24" y="24" width="1152" height="372" rx="18" fill="#0b1220" />
+      <rect x="24" y="24" width="1152" height="372" rx="18" fill="url(#mlopsA)" opacity="0.08" />
+
+      {/* pipeline stages: 6 boxes across */}
+      <g transform="translate(70, 120)">
+        {/* Data Ingestion */}
+        <g filter="url(#mlopsShadow)">
+          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
+          <text x="16" y="26" className="stageTitle">Data Ingestion</text>
+          <text x="16" y="48" className="stageNote">GPU Telemetry (H100)</text>
+          <text x="16" y="66" className="stageNote">RackTelemetry / Redfish</text>
+          <text x="16" y="84" className="stageNote">Azure Blob Storage</text>
+        </g>
+        <line className="arrow" x1="178" y1="60" x2="228" y2="60" />
+
+        {/* Feature Engineering */}
+        <g transform="translate(230,0)" filter="url(#mlopsShadow)">
+          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
+          <text x="16" y="26" className="stageTitle">Feature Eng.</text>
+          <text x="16" y="48" className="stageNote">Azure Data Factory</text>
+          <text x="16" y="66" className="stageNote">Transforms / Joins</text>
+          <text x="16" y="84" className="stageNote">Delta Lake</text>
+        </g>
+        <line className="arrow" x1="408" y1="60" x2="458" y2="60" />
+
+        {/* Training */}
+        <g transform="translate(460,0)" filter="url(#mlopsShadow)">
+          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
+          <text x="16" y="26" className="stageTitle">Training</text>
+          <text x="16" y="48" className="stageNote">Azure ML</text>
+          <text x="16" y="66" className="stageNote">XGBoost / KNN / LR</text>
+          <text x="16" y="84" className="stageNote">MLflow Tracking</text>
+        </g>
+        <line className="arrow" x1="638" y1="60" x2="688" y2="60" />
+
+        {/* Evaluation */}
+        <g transform="translate(690,0)" filter="url(#mlopsShadow)">
+          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
+          <text x="16" y="26" className="stageTitle">Evaluation</text>
+          <text x="16" y="48" className="stageNote">F1 / ROC-AUC</text>
+          <text x="16" y="66" className="stageNote">Brier / MSE</text>
+          <text x="16" y="84" className="stageNote">Feature Importance</text>
+        </g>
+        <line className="arrow" x1="868" y1="60" x2="918" y2="60" />
+
+        {/* Deployment */}
+        <g transform="translate(920,0)" filter="url(#mlopsShadow)">
+          <rect className="stage" x="0" y="0" width="170" height="120" rx="14" />
+          <text x="16" y="26" className="stageTitle">Deployment</text>
+          <text x="16" y="48" className="stageNote">Azure ML Endpoints</text>
+          <text x="16" y="66" className="stageNote">Batch & Online</text>
+          <text x="16" y="84" className="stageNote">Model Registry</text>
+        </g>
+      </g>
+
+      {/* Online Evaluation callout */}
+      <g transform="translate(70, 280)" filter="url(#mlopsShadow)">
+        <rect x="0" y="0" width="1020" height="84" rx="12" fill="#0f172a" stroke="#334155" strokeWidth="1.25" />
+        <text x="16" y="28" className="stageTitle">Online Evaluation</text>
+        <text x="16" y="52" className="stageNote">
+          High-volume predictions via MLflow batch when latency isn’t critical; real-time endpoints for immediate feedback and alerting.
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 type Project = {
   title: string;
   description: string;
@@ -150,7 +253,7 @@ export default function ProjectsSection(): JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.2 });
   const [expandedProjects, setExpandedProjects] = useState<ExpandedMap>({});
-   // NEW: featured tech toggle
+  // NEW: featured tech toggle
   const [isFeaturedTechExpanded, setIsFeaturedTechExpanded] = useState(false);
 
   const toggleProjectExpansion = (projectIndex: number) => {
@@ -166,7 +269,7 @@ export default function ProjectsSection(): JSX.Element {
   const featuredMicrosoft: Project = {
     title: "Microsoft — GPU Failure Prediction (Ushuaia)",
     description:
-      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. Built an end-to-end pipeline across various Telemetry ingestion, feature engineering, model training/tuning, and online evaluation—enabling proactive maintenance and reduced downtime at AI cluster scale. Paired with my Document RAG Intelligence System for searchable SOPs, on-call runbooks, and fault-code reasoning to accelerate incident response.",
+      "Production-grade ML platform to classify H100 nodes likely to enter OFR and forecast time-to-failure using survival analysis. Built an end-to-end MLOps pipeline across telemetry ingestion, feature engineering, model training/tuning, and online evaluation—enabling proactive maintenance and reduced downtime at AI cluster scale.",
     technologies: [
       "Azure Blob Storage",
       "Azure Data Factory",
@@ -175,8 +278,8 @@ export default function ProjectsSection(): JSX.Element {
       "Azure Machine Learning",
       "MLflow",
       "XGBoost",
-      "KNN",
-      "Logistic Regression",
+      "Pytorch",
+      "TensorFlow",
       "Prophet",
       "LSTM",
       "Random Survival Forest (RSF)",
@@ -186,8 +289,7 @@ export default function ProjectsSection(): JSX.Element {
       "AUC / Brier / F1",
       "Document RAG Intelligence System",
     ],
-    image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500",
+    // image removed in favor of inline pipeline SVG
     alt: "GPU Failure Prediction at Microsoft",
     badges: ["Featured", "Enterprise ML", "Reliability/SRE"],
   };
@@ -199,9 +301,9 @@ export default function ProjectsSection(): JSX.Element {
   const projects: Project[] = [
     {
       title:
-        "🧠 PR Reviewer — Claude-Powered GitHub Review (MCP + Databricks + Notion)",
+        "PR Reviewer — Claude-Powered GitHub Review (MCP + Databricks + Notion)",
       description:
-        "A Model Context Protocol (MCP) server that connects Claude to Databricks repos and Notion knowledge. It auto-summarizes PRs, reasons over diffs, cross-references engineering standards, and proposes actionable review comments. Grounded by my Document RAG Intelligence System for consistent policy checks and safer merges.",
+        "A Model Context Protocol (MCP) server that connects Claude to Databricks repos and Notion knowledge. It auto-summarizes PRs, reasons over diffs, cross-references engineering standards, and proposes actionable review comments.",
       technologies: [
         "Model Context Protocol (MCP)",
         "Claude (Anthropic)",
@@ -329,6 +431,7 @@ export default function ProjectsSection(): JSX.Element {
           style={{ animationDelay: "0s" }}
         >
           <div className="grid md:grid-cols-2">
+            {/* LEFT: copy + chips */}
             <div className="p-8 lg:p-10">
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles className="w-5 h-5" />
@@ -350,71 +453,73 @@ export default function ProjectsSection(): JSX.Element {
                     <span className="font-semibold">Use Case</span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    Predict H100 OFR risk + time-to-failure from telemetry to
+                    Predict H100 OFR risk & time-to-failure from telemetry to
                     prevent downtime and reduce repair costs.
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4">
                   <div className="flex items-center gap-2 text-sm mb-1">
                     <ServerCog className="w-4 h-4" />
-                    <span className="font-semibold">Pipeline</span>
+                    <span className="font-semibold">MLOps Pipeline</span>
                   </div>
                   <p className="text-white/80 text-sm">
                     RackTelemetry/Redfish → ADF feature engineering → Azure ML
-                    training/tuning → batch & online inference with MLflow.
+                    training/tuning → MLflow batch & online inference.
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4">
                   <div className="flex items-center gap-2 text-sm mb-1">
                     <FileText className="w-4 h-4" />
-                    <span className="font-semibold">Knowledge</span>
+                    <span className="font-semibold">Ops Knowledge (Optional)</span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    Document RAG Intelligence System surfaces SOPs, fault-code
-                    playbooks, and incident checklists inline.
+                    Team docs & vendor specs (SharePoint, OneNote, DOCX/PPT) surfaced via Document RAG when needed.
                   </p>
                 </div>
               </div>
 
-             {/* Tech tags with expandable "+N more" */}
-            <div className="flex flex-wrap items-center gap-2">
-              {(isFeaturedTechExpanded
-                ? featuredMicrosoft.technologies
-                : featuredMicrosoft.technologies.slice(0, 12)
-              ).map((t, i) => (
-                <span
-                  key={`ft-${i}-${t}`}
-                  className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
-                >
-                  {t}
-                </span>
-              ))}
-            
-              {featuredMicrosoft.technologies.length > 12 && (
-                <button
-                  type="button"
-                  onClick={() => setIsFeaturedTechExpanded((v) => !v)}
-                  aria-expanded={isFeaturedTechExpanded}
-                  className="text-xs px-3 py-1 rounded-full font-semibold
-                             bg-blue-500/90 hover:bg-blue-500 focus:outline-none
-                             focus:ring-2 focus:ring-offset-2 focus:ring-blue-300
-                             text-white transition-all"
-                >
-                  {isFeaturedTechExpanded
-                    ? "Show less"
-                    : `+${featuredMicrosoft.technologies.length - 12} more`}
-                </button>
-              )}
+              {/* Tech tags with expandable "+N more" */}
+              <div className="flex flex-wrap items-center gap-2">
+                {(isFeaturedTechExpanded
+                  ? featuredMicrosoft.technologies
+                  : featuredMicrosoft.technologies.slice(0, 12)
+                ).map((t, i) => (
+                  <span
+                    key={`ft-${i}-${t}`}
+                    className="bg-white/10 text-white text-xs px-3 py-1 rounded-full"
+                  >
+                    {t}
+                  </span>
+                ))}
+
+                {featuredMicrosoft.technologies.length > 12 && (
+                  <button
+                    type="button"
+                    onClick={() => setIsFeaturedTechExpanded((v) => !v)}
+                    aria-expanded={isFeaturedTechExpanded}
+                    className="text-xs px-3 py-1 rounded-full font-semibold
+                               bg-blue-500/90 hover:bg-blue-500 focus:outline-none
+                               focus:ring-2 focus:ring-offset-2 focus:ring-blue-300
+                               text-white transition-all"
+                  >
+                    {isFeaturedTechExpanded
+                      ? "Show less"
+                      : `+${featuredMicrosoft.technologies.length - 12} more`}
+                  </button>
+                )}
+              </div>
             </div>
 
-
-            <div className="relative">
-              <img
-                src={featuredMicrosoft.image}
-                alt={featuredMicrosoft.alt}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+            {/* RIGHT: MLOps pipeline visual (replaces datacenter photo) */}
+            <div className="relative bg-slate-950">
+              <MicrosoftMlopsSVG />
+              {/* Badges */}
+              <div className="absolute top-4 right-4 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
+                GPU Failure Prediction
+              </div>
+              <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur px-3 py-1.5 rounded-full text-xs">
+                Ops docs via <span className="font-semibold">Document RAG</span>
+              </div>
             </div>
           </div>
         </div>
@@ -431,11 +536,7 @@ export default function ProjectsSection(): JSX.Element {
             >
               <div className="relative overflow-hidden bg-slate-950">
                 {project.svg ? (
-                  <div
-                    className="w-full"
-                    aria-label={project.alt}
-                    role="img"
-                  >
+                  <div className="w-full" aria-label={project.alt} role="img">
                     {project.svg}
                   </div>
                 ) : (
@@ -534,9 +635,7 @@ export default function ProjectsSection(): JSX.Element {
                   🤖 Agentic AI + RAG
                 </h4>
                 <p className="text-sm text-gray-600">
-                  Document RAG Intelligence System grounds both reliability and
-                  developer workflows in authoritative knowledge (SOPs, PR
-                  guidelines, runbooks).
+                  Team docs & vendor specs (SharePoint, OneNote, DOCX/PPT) can be grounded via Document RAG when needed.
                 </p>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-sm">
