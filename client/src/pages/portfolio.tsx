@@ -170,6 +170,13 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const sectionId = decodeURIComponent(window.location.hash.slice(1));
+    if (sectionId) {
+      requestAnimationFrame(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: "instant" }));
+    }
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
