@@ -181,6 +181,7 @@ export default function Portfolio() {
         </a>
         <div className={`nav-links ${menuOpen ? "nav-links-open" : ""}`}>
           <a href="#work" onClick={closeMenu}>Work</a>
+          <a href="#ecosystem" onClick={closeMenu}>At Aircall</a>
           <a href="#open-source" onClick={closeMenu}>Open source</a>
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
@@ -346,11 +347,64 @@ export default function Portfolio() {
           </div>
         </section>
 
+        <section id="ecosystem" className="ecosystem-section">
+          <div className="section-wrap">
+            <div className="ecosystem-heading">
+              <div>
+                <SectionLabel>At Aircall / 03</SectionLabel>
+                <h2>From a partner&apos;s idea<br />to an agent&apos;s next action.</h2>
+              </div>
+              <p>
+                The work I do sits inside a larger AI ecosystem: helping developers connect
+                their products to live voice and messaging conversations.
+              </p>
+            </div>
+            <div className="ecosystem-cards">
+              <article className="ecosystem-feature">
+                <div className="ecosystem-card-top">
+                  <span><BookOpen size={18} aria-hidden="true" /> Developer guide</span>
+                  <span>01 / Build</span>
+                </div>
+                <div>
+                  <h3>Connect once.<br />Make agents useful everywhere.</h3>
+                  <p>
+                    A practical guide to planning, building, and publishing an Aircall
+                    integration. See how MCP lets AI agents discover partner capabilities
+                    and take action during a conversation.
+                  </p>
+                  <div className="ecosystem-tags" aria-label="Topics covered">
+                    <span>Plan</span><span>Build</span><span>Publish</span>
+                  </div>
+                </div>
+                <a href="https://aircall.io/blog/tech/ai-ecosystem-developer-guide/" target="_blank" rel="noopener noreferrer">
+                  Read the AI ecosystem developer guide <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </article>
+              <article className="ecosystem-partners">
+                <div className="ecosystem-card-top">
+                  <span><GitBranch size={18} aria-hidden="true" /> Partner ecosystem</span>
+                  <span>02 / Connect</span>
+                </div>
+                <div>
+                  <h3>Where partners meet the conversation.</h3>
+                  <p>
+                    Explore Aircall&apos;s technology partner program and the integrations
+                    that connect customer data, agent context, and real-time actions.
+                  </p>
+                </div>
+                <a href="https://aircall.io/partners/technology/" target="_blank" rel="noopener noreferrer">
+                  Explore technology partnerships <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section id="open-source" className="opensource-section">
           <div className="section-wrap">
             <div className="opensource-header">
               <div>
-                <SectionLabel>Open source / 03</SectionLabel>
+                <SectionLabel>Open source / 04</SectionLabel>
                 <h2>Systems are better when<br /><span>the edges are open.</span></h2>
               </div>
               <GitBranch className="opensource-icon" size={58} strokeWidth={1} />
@@ -378,24 +432,13 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-            <div className="ecosystem-note">
-              <div className="ecosystem-note-icon"><BookOpen size={20} /></div>
-              <div>
-                <p className="section-label">Field note</p>
-                <h3>Connect once. Let every agent use it.</h3>
-                <p>Aircall&apos;s developer guide is the clearest expression of the ecosystem I&apos;m helping build toward.</p>
-              </div>
-              <a href="https://aircall.io/blog/tech/ai-ecosystem-developer-guide/" target="_blank" rel="noreferrer">
-                Read the guide <ArrowUpRight size={17} />
-              </a>
-            </div>
           </div>
         </section>
 
         <section id="contact" className="contact-section section-wrap">
           <div className="contact-panel">
             <div className="contact-copy">
-              <SectionLabel>Open to the right problem / 04</SectionLabel>
+              <SectionLabel>Open to the right problem / 05</SectionLabel>
               <h2>Have an ambitious system to build?</h2>
               <p>
                 I like hard infrastructure problems, useful agents, and teams that care about
