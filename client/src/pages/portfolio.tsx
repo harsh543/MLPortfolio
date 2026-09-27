@@ -8,7 +8,6 @@ import {
   ExternalLink,
   Github,
   GitBranch,
-  Layers3,
   Linkedin,
   Menu,
   Radio,
@@ -20,7 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import harshPhoto from "@assets/1516853437370_1754734932722.jpeg";
+import harshPhoto from "@assets/1516853436996_(1)_1790528430269.jpeg";
 
 type Project = {
   title: string;
@@ -235,38 +234,15 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <div className="hero-art" aria-label="AI infrastructure profile">
-              <div className="hero-art-glow" />
-              <div className="terminal-window">
-                <div className="terminal-bar">
-                  <span className="terminal-dots"><i /><i /><i /></span>
-                  <span>control_plane / status</span>
-                  <span className="terminal-live"><span /> live</span>
-                </div>
-                <div className="terminal-content">
-                  <p className="terminal-comment">// make intelligent systems useful</p>
-                  <p><span className="terminal-key">const</span> <span className="terminal-name">agent</span> = {"{"}</p>
-                  <p className="terminal-indent"><span className="terminal-prop">context</span>: <span className="terminal-string">&quot;just enough&quot;</span>,</p>
-                  <p className="terminal-indent"><span className="terminal-prop">tools</span>: <span className="terminal-string">&quot;discoverable&quot;</span>,</p>
-                  <p className="terminal-indent"><span className="terminal-prop">actions</span>: <span className="terminal-string">&quot;production-ready&quot;</span>,</p>
-                  <p>{"}"}</p>
-                  <div className="terminal-divider" />
-                  <div className="terminal-metrics">
-                    <div><span>gateway</span><strong>healthy</strong></div>
-                    <div><span>context</span><strong>optimized</strong></div>
-                    <div><span>agents</span><strong>connected</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div className="orbit-card orbit-card-top">
-                <Layers3 size={17} />
-                <span>multi-tenant MCP</span>
-              </div>
-              <div className="orbit-card orbit-card-bottom">
-                <ShieldCheck size={17} />
-                <span>OAuth 2.1 + PKCE</span>
-              </div>
-              <div className="hero-number"><span>01</span><small>systems<br />that ship</small></div>
+            <div className="hero-art">
+              <div className="portrait-backdrop" aria-hidden="true" />
+              <figure className="portrait-frame">
+                <img src={harshPhoto} alt="Portrait of Harsh Bajaj" />
+                <figcaption className="portrait-caption">
+                  <span className="portrait-caption-name">Harsh P. Bajaj</span>
+                  <span>Engineer, builder, and open-source contributor</span>
+                </figcaption>
+              </figure>
             </div>
           </div>
           <a className="scroll-cue" href="#signal">
