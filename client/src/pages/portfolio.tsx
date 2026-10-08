@@ -3,6 +3,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   BookOpen,
+  CalendarDays,
   Check,
   Code2,
   ExternalLink,
@@ -193,7 +194,7 @@ export default function Portfolio() {
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
-        <a className="nav-cta" href="#contact">Let&apos;s talk <ArrowUpRight size={15} /></a>
+        <a className="nav-cta" href="https://calendly.com/harshbajaj-rules/30min" target="_blank" rel="noreferrer">Book a call <ArrowUpRight size={15} /></a>
         <button
           className="menu-toggle"
           type="button"
@@ -453,6 +454,14 @@ export default function Portfolio() {
               </p>
             </div>
             <div className="contact-actions">
+              <a className="contact-link" href="https://calendly.com/harshbajaj-rules/30min" target="_blank" rel="noreferrer">
+                <CalendarDays size={19} />
+                <span>Book a call on Calendly</span>
+                <ArrowUpRight size={17} />
+              </a>
+              <p style={{ fontSize: "0.75rem", lineHeight: 1.6, opacity: 0.7, margin: "0 0 12px" }}>
+                Choose a 15-, 30-, or 45-minute conversation. Pick an available time on Calendly.
+              </p>
               <a className="contact-link" href="https://linkedin.com/in/harshbajaj-ai-ml-engineer" target="_blank" rel="noreferrer">
                 <Linkedin size={19} />
                 <span>Connect on LinkedIn</span>
