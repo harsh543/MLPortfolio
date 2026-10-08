@@ -433,6 +433,18 @@ button {
   letter-spacing: -0.06em;
 }
 
+.signal-stat strong.signal-stat-compact {
+  display: block;
+  font-size: clamp(1.35rem, 2vw, 2.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.signal-stat strong.signal-stat-range {
+  font-size: clamp(1.45rem, 2.5vw, 2.5rem);
+  white-space: nowrap;
+}
+
 .signal-stat p {
   color: #a2a99c;
   font-family: var(--mono);

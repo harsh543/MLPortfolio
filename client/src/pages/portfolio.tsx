@@ -270,20 +270,20 @@ export default function Portfolio() {
           </div>
           <div className="signal-grid">
             <div className="signal-stat">
-              <strong>13<span> days</span></strong>
-              <p>advance warning in GPU predictive-failure work</p>
+              <strong>~85<span>%</span></strong>
+              <p>of Aircall's production voice-agent traffic runs through the MCP gateway I built</p>
             </div>
             <div className="signal-stat">
-              <strong>&lt;120<span> ms</span></strong>
-              <p>TP99 latency target for real-time ML pipelines</p>
+              <strong className="signal-stat-compact">250+ apps · 25K customers</strong>
+              <p>reached by the agent execution layer I own</p>
             </div>
             <div className="signal-stat">
-              <strong>99.99<span>%</span></strong>
-              <p>fleet uptime through proactive maintenance</p>
+              <strong className="signal-stat-range">0% → 72%</strong>
+              <p>ticket-creation success on a production agent tool I rebuilt</p>
             </div>
-            <div className="signal-stat signal-stat-muted">
-              <strong>144</strong>
-              <p>public repositories across AI, infra, and developer tools</p>
+            <div className="signal-stat">
+              <strong className="signal-stat-range">40% → 96.5%</strong>
+              <p>HubSpot agent-action success across the integration I hardened</p>
             </div>
           </div>
         </section>
