@@ -271,8 +271,8 @@ export default function Portfolio() {
           </div>
           <div className="signal-grid">
             <div className="signal-stat">
-              <strong>~85<span>%</span></strong>
-              <p>of Aircall's production voice-agent traffic runs through the MCP gateway I built</p>
+              <strong className="signal-stat-range">78.5% → 97.5%</strong>
+              <p>agent tool-call success across Aircall's production voice agents, during the reliability hardening program I led</p>
             </div>
             <div className="signal-stat">
               <strong className="signal-stat-compact">250+ apps · 25K customers</strong>
