@@ -279,7 +279,7 @@ export default function Portfolio() {
               <p>reached by the agent execution layer I own</p>
             </div>
             <div className="signal-stat">
-              <strong className="signal-stat-range">0% → 72%</strong>
+              <strong className="signal-stat-range">0% → 100%</strong>
               <p>ticket-creation success on a production agent tool I rebuilt</p>
             </div>
             <div className="signal-stat">
