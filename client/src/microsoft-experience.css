@@ -1,0 +1,281 @@
+.microsoft-experience {
+  --ms-ink: #171d23;
+  --ms-paper: #e9eceb;
+  --ms-muted: #a9b2b4;
+  --ms-accent: #a8d9f7;
+  background:
+    radial-gradient(ellipse at 78% 15%, rgba(168, 217, 247, 0.1), transparent 34rem),
+    var(--ms-ink);
+  color: var(--ms-paper);
+  padding: clamp(4.75rem, 8vw, 7.5rem) clamp(1.25rem, 7vw, 8rem);
+  position: relative;
+}
+
+.microsoft-experience::before {
+  border-top: 1px solid rgba(233, 236, 235, 0.2);
+  content: "";
+  left: clamp(1.25rem, 7vw, 8rem);
+  position: absolute;
+  right: clamp(1.25rem, 7vw, 8rem);
+  top: 0;
+}
+
+.microsoft-experience-inner {
+  display: grid;
+  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
+.microsoft-experience-kicker {
+  align-items: center;
+  color: #c0c8c9;
+  display: flex;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  gap: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.microsoft-mark {
+  align-items: center;
+  border: 1px solid rgba(168, 217, 247, 0.55);
+  color: var(--ms-accent);
+  display: inline-flex;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  height: 1.7rem;
+  justify-content: center;
+  width: 1.7rem;
+}
+
+.microsoft-kicker-divider {
+  color: #657178;
+  margin: 0 0.2rem;
+}
+
+.microsoft-experience-heading h2 {
+  font-size: clamp(2.7rem, 5.2vw, 5.35rem);
+  letter-spacing: -0.075em;
+  line-height: 0.98;
+  margin: 2.15rem 0 0;
+  max-width: 650px;
+}
+
+.microsoft-experience-heading h2 span {
+  color: var(--ms-accent);
+}
+
+.microsoft-experience-summary {
+  color: var(--ms-muted);
+  font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+  line-height: 1.75;
+  margin: 1.6rem 0 0;
+  max-width: 440px;
+}
+
+.microsoft-role {
+  align-items: center;
+  color: #c0c8c9;
+  display: flex;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  gap: 0.7rem;
+  letter-spacing: 0.08em;
+  margin-top: 2.4rem;
+  text-transform: uppercase;
+}
+
+.microsoft-role-rule {
+  background: var(--ms-accent);
+  height: 1px;
+  width: 2.5rem;
+}
+
+.microsoft-proof {
+  align-self: center;
+  border-top: 1px solid rgba(233, 236, 235, 0.28);
+}
+
+.microsoft-proof-topline {
+  color: #aeb8b9;
+  display: flex;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 0 0.7rem;
+  text-transform: uppercase;
+}
+
+.microsoft-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.microsoft-metric {
+  border-top: 1px solid rgba(233, 236, 235, 0.17);
+  min-height: 185px;
+  padding: 1.15rem 1.2rem 1.25rem 0;
+  position: relative;
+}
+
+.microsoft-metric:nth-child(even) {
+  border-left: 1px solid rgba(233, 236, 235, 0.17);
+  padding-left: 1.35rem;
+}
+
+.microsoft-metric-index {
+  color: #7e8a8c;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+.microsoft-metric-value {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+.microsoft-metric-value strong {
+  color: var(--ms-accent);
+  font-size: clamp(2rem, 3.1vw, 3.35rem);
+  font-weight: 600;
+  letter-spacing: -0.075em;
+  line-height: 1;
+}
+
+.microsoft-metric-value span {
+  color: #aeb8b9;
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.microsoft-metric h3 {
+  color: var(--ms-paper);
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  margin: 0.75rem 0 0;
+  text-transform: uppercase;
+}
+
+.microsoft-metric p {
+  color: #9da8aa;
+  font-size: 0.74rem;
+  line-height: 1.6;
+  margin: 0.55rem 0 0;
+  max-width: 240px;
+}
+
+.microsoft-stack {
+  align-items: center;
+  border-top: 1px solid rgba(233, 236, 235, 0.17);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.microsoft-stack-label {
+  color: #9da8aa;
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.microsoft-stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.microsoft-stack-tags span {
+  border: 1px solid rgba(233, 236, 235, 0.2);
+  color: #d1d8d8;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  padding: 0.42rem 0.55rem;
+}
+
+.microsoft-experience :focus-visible {
+  outline: 2px solid var(--ms-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .microsoft-experience-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .microsoft-experience-heading h2 {
+    max-width: 680px;
+  }
+
+  .microsoft-experience-summary {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 560px) {
+  .microsoft-experience {
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+  }
+
+  .microsoft-experience::before {
+    left: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .microsoft-experience-heading h2 {
+    font-size: clamp(2.6rem, 12vw, 4rem);
+    margin-top: 1.7rem;
+  }
+
+  .microsoft-proof-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .microsoft-metric {
+    min-height: 178px;
+    padding-right: 0.75rem;
+  }
+
+  .microsoft-metric:nth-child(even) {
+    padding-left: 0.85rem;
+  }
+
+  .microsoft-metric-value {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .microsoft-metric-value strong {
+    font-size: clamp(1.8rem, 8vw, 2.65rem);
+  }
+
+  .microsoft-metric p {
+    font-size: 0.69rem;
+  }
+
+  .microsoft-stack {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}

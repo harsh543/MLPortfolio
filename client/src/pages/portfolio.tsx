@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import harshPhoto from "@assets/1516853436996_(1)_1790528430269.jpeg";
+import MicrosoftExperience from "@/components/portfolio/microsoft-experience";
 
 type Project = {
   title: string;
@@ -190,6 +191,7 @@ export default function Portfolio() {
         <div className={`nav-links ${menuOpen ? "nav-links-open" : ""}`}>
           <a href="#work" onClick={closeMenu}>Work</a>
           <a href="#ecosystem" onClick={closeMenu}>At Aircall</a>
+          <a href="#microsoft" onClick={closeMenu}>Microsoft</a>
           <a href="#open-source" onClick={closeMenu}>Open source</a>
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
@@ -262,7 +264,7 @@ export default function Portfolio() {
 
         <section id="signal" className="signal-section">
           <div className="signal-intro">
-            <SectionLabel>Signal / 01</SectionLabel>
+            <SectionLabel>Signal / 01 · Aircall</SectionLabel>
             <h2>Engineering for the moment after the demo.</h2>
             <p>
               The interesting part of AI is not just what a model can say. It is what the surrounding
@@ -288,6 +290,8 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
+
+        <MicrosoftExperience />
 
         <section id="about" className="about-section section-wrap">
           <div className="about-heading">
